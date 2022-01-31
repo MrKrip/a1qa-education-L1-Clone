@@ -1,0 +1,17 @@
+Элемент заголовка страницы:
+	//div[contains(@id,"content")]//following::h3
+Кнопка 'Add Element':
+	//button[@onclick="addElement()"]
+Кнопка 'Delete' (появляется после клика на Add Element)
+	//button[@onclick="deleteElement()"]
+Элемент ссылки в футере сайта
+	//div[contains(@id,"footer")]//a
+Элемент заголовка страницы
+	//div[contains(@class,"example")]//following::h3
+Список элементов из заголовков таблицы из примера 1 и список для примера 2
+	//table[contains(@id,"table1")]//thead
+	//table[contains(@id,"table2")]//thead
+Элемент ячейки, которая содержит имя "John" из таблицы 2
+	//table[contains(@id,"table2")]//td[text()[contains(.,"John")]]
+Элемент со значением веб сайта для человека  с фамилией "Doe" и именем "Jason" из таблицы 1
+	//table[contains(@id,"table1")]//tr[td[text()="Doe"] and td[text()="Jason"]]//td[text()[starts-with(.,"http")]]
