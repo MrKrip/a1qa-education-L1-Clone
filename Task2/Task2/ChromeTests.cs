@@ -24,11 +24,16 @@ namespace Task2
         public void TestCase1()
         {
             MainPage mainPage = new MainPage(driver);
+            AboutPage aboutPage = new AboutPage(driver);
             var IsMainPageOpen = mainPage
                 .GoToPage()
                 .ChekPage();
             Assert.IsTrue(IsMainPageOpen, "Main page not open");
             mainPage.ClickAboutButton();
+            var IsAboutPageOpen = aboutPage.CheckPage();
+            Assert.IsTrue(IsAboutPageOpen, "About page not open");
+            var IsNumbersOfGamersCorrect = aboutPage.CheckNumberOfGamers();
+            Assert.IsTrue(IsNumbersOfGamersCorrect, "There are more players in the game than online");
         }
     }
 }
