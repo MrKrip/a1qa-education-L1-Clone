@@ -34,6 +34,10 @@ namespace Task2
             Assert.IsTrue(IsAboutPageOpen, "About page not open");
             var IsNumbersOfGamersCorrect = aboutPage.CheckNumberOfGamers();
             Assert.IsTrue(IsNumbersOfGamersCorrect, "There are more players in the game than online");
+            IsMainPageOpen= mainPage
+                .GoToPage()
+                .ChekPage();
+            Assert.IsTrue(IsMainPageOpen, "Main page not open");
         }
     }
 }

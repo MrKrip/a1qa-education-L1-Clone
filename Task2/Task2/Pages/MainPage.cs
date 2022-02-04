@@ -11,7 +11,7 @@ namespace Task2.Pages
     class MainPage
     {
         private string MainPageUrl = "https://store.steampowered.com/";
-        private By MainPageIndicator = By.XPath("//body[contains(@class,\"home\")]");
+        private By MainPageIndicator = By.XPath("//div[contains(@class,\"home\")]");
         private By AboutLinkBy = By.XPath("//div[@id=\"global_header\"]//a[contains(@href,\"about\") and contains(@class,\"menuitem\")]");
         private IWebDriver driver;
         private WebDriverWait wait;
