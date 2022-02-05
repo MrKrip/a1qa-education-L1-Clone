@@ -53,6 +53,9 @@ namespace Task2
             Assert.IsTrue(OSCheck, "Linux not selected");
             var LanCoopCheck = sellersPage.ChooseNumberOfPlayers();
             Assert.IsTrue(LanCoopCheck, "LAN-Coop not selected");
+            (var TagCheck, var CountCheck) = sellersPage.ChooseTag();
+            Assert.IsTrue(TagCheck,"Tag not selected");
+            Assert.IsTrue(CountCheck, "The specified number of results for the query does not match the number of games in the list");
         }
     }
 }

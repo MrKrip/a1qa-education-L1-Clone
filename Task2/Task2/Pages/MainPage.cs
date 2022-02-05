@@ -48,8 +48,9 @@ namespace Task2.Pages
         {
             var NoteWorthy = driver.FindElement(NoteWorthyBy);
             Actions actionProvider = new Actions(driver);
-            actionProvider.MoveToElement(NoteWorthy).Build().Perform();
-            var TopSellersLink = wait.Until(e=>e.FindElement(TopSellersLinkBy));
+            actionProvider.MoveToElement(NoteWorthy).Build().Perform();            
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(TopSellersLinkBy));
+            var TopSellersLink = driver.FindElement(TopSellersLinkBy);
             TopSellersLink.Click();
             return this;
         }
