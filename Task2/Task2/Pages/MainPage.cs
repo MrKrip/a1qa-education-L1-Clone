@@ -14,8 +14,8 @@ namespace Task2.Pages
         private string MainPageUrl = "https://store.steampowered.com/";
         private By MainPageIndicator = By.XPath("//div[contains(@class,\"home\")]");
         private By AboutLinkBy = By.XPath("//div[@id=\"global_header\"]//a[contains(@href,\"about\") and contains(@class,\"menuitem\")]");
-        private By NoteWorthyBy = By.Id("noteworthy_tab");
-        private By TopSellersLinkBy = By.XPath("//div[contains(@style,\"display: block\") and @id=\"noteworthy_flyout\"]//a[contains(@href,\"topsellers\")]");
+        private By NoteWorthyBy = By.XPath("//div[@id=\"noteworthy_tab\"]");
+        private By TopSellersLinkBy = By.XPath("//div[contains(@class,\"focus\")]//following-sibling::div[@id=\"noteworthy_flyout\"]//a[contains(@href,\"topsellers\")]");
         private IWebDriver driver;
         private WebDriverWait wait;
 

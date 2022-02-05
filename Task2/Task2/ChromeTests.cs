@@ -43,11 +43,16 @@ namespace Task2
         public void TestCase2()
         {
             MainPage mainPage = new MainPage(driver);
+            TopSellersPage sellersPage = new TopSellersPage(driver);
             var IsMainPageOpen = mainPage
                .GoToPage()
                .ChekPage();
             Assert.IsTrue(IsMainPageOpen, "Main page not open");
             mainPage.ClickTopSellersLink();
+            var OSCheck = sellersPage.ChooseLinuxOS();
+            Assert.IsTrue(OSCheck, "Linux not selected");
+            var LanCoopCheck = sellersPage.ChooseNumberOfPlayers();
+            Assert.IsTrue(LanCoopCheck, "LAN-Coop not selected");
         }
     }
 }

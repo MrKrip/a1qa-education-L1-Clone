@@ -10,9 +10,11 @@ namespace Task2.Pages
 {
     class TopSellersPage
     {
-        private By LinuxCheckBoxBy = By.XPath("//span[@data-value=\"linux\"]");
+        private By LinuxCheckSpanBy = By.XPath("//span[@data-value=\"linux\"]");
+        private By LinuxCheckBy = By.XPath("//span[@data-value=\"linux\" and contains(@class,\"checked\")]");
         private By NumberOfPlayersBy = By.XPath("//div[@data-collapse-name=\"category3\"]");
         private By LANCoopBy = By.XPath("//span[@data-value=\"48\"]");
+        private By LANCoopCheckBy = By.XPath("//span[@data-value=\"48\" and contains(@class,\"checked\")]");
         private By FirstTagBy = By.XPath("//div[@id=\"TagFilter_Container\"]//span[1]");
         private By ActionTagBy = By.XPath("//div[@id=\"TagFilter_Container\"]//span[@data-value=\"19\" and @data-param=\"tags\"]");
         private By FirstGameInListBy = By.XPath("//div[@id=\"search_resultsRows\"]//a[1]");
@@ -26,6 +28,23 @@ namespace Task2.Pages
         {
             driver = webDriver;
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
+        }
+
+        public bool ChooseLinuxOS()
+        {
+            var LinuxOS = driver.FindElement(LinuxCheckSpanBy);
+            LinuxOS.Click();
+            var LinuxCheck = driver.FindElements(LinuxCheckBy).Count>0;
+            return LinuxCheck;
+        }
+
+        public bool ChooseNumberOfPlayers()
+        {
+            var NumOfPlayers = driver.FindElement(NumberOfPlayersBy);
+            NumOfPlayers.Click();
+            var LANCoop = wait.Until(e=>e.FindElement(LANCoopBy));
+            var LanCoopCheck= driver.FindElements(LANCoopCheckBy).Count > 0;
+            return LanCoopCheck;
         }
     }
 }
