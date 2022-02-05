@@ -39,5 +39,15 @@ namespace Task2
                 .ChekPage();
             Assert.IsTrue(IsMainPageOpen, "Main page not open");
         }
+        [Test]
+        public void TestCase2()
+        {
+            MainPage mainPage = new MainPage(driver);
+            var IsMainPageOpen = mainPage
+               .GoToPage()
+               .ChekPage();
+            Assert.IsTrue(IsMainPageOpen, "Main page not open");
+            mainPage.ClickTopSellersLink();
+        }
     }
 }

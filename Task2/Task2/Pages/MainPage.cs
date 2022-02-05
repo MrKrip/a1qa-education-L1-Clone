@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,8 @@ namespace Task2.Pages
         private string MainPageUrl = "https://store.steampowered.com/";
         private By MainPageIndicator = By.XPath("//div[contains(@class,\"home\")]");
         private By AboutLinkBy = By.XPath("//div[@id=\"global_header\"]//a[contains(@href,\"about\") and contains(@class,\"menuitem\")]");
+        private By NoteWorthyBy = By.Id("noteworthy_tab");
+        private By TopSellersLinkBy = By.XPath("//div[contains(@style,\"display: block\") and @id=\"noteworthy_flyout\"]//a[contains(@href,\"topsellers\")]");
         private IWebDriver driver;
         private WebDriverWait wait;
 
@@ -39,6 +42,16 @@ namespace Task2.Pages
         {
             var Indicator = driver.FindElements(MainPageIndicator);
             return Indicator.Count > 0;
+        }
+
+        public MainPage ClickTopSellersLink()
+        {
+            var NoteWorthy = driver.FindElement(NoteWorthyBy);
+            Actions actionProvider = new Actions(driver);
+            actionProvider.MoveToElement(NoteWorthy).Build().Perform();
+            var TopSellersLink = wait.Until(e=>e.FindElement(TopSellersLinkBy));
+            TopSellersLink.Click();
+            return this;
         }
     }
 }
