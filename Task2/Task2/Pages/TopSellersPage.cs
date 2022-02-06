@@ -17,10 +17,10 @@ namespace Task2.Pages
         private By ActionTagCountBy = By.XPath("//div[@id=\"TagFilter_Container\"]//span[@data-value=\"19\" and @data-param=\"tags\"]//span[contains(@class,\"count\")]");
         private By ActionTagCheckBy = By.XPath("//div[@id=\"TagFilter_Container\"]//span[@data-value=\"19\" and @data-param=\"tags\" and contains(@class,\"checked\")]");
         private By GameListBy = By.XPath("//div[@id=\"search_resultsRows\"]//a");
-        private By FirstGameInListBy = By.XPath("//div[@id=\"search_resultsRows\"]//a[1]");
+        private By FirstGameBy = By.XPath("//div[@id=\"search_resultsRows\"]//a[1]");
         private By FirstGameTitleBy = By.XPath("//div[@id=\"search_resultsRows\"]//a[1]//span[contains(@class,\"title\")]");
         private By FirstGameReleaseBy = By.XPath("//div[@id=\"search_resultsRows\"]//a[1]//div[contains(@class,\"released\")]");
-        private By FirstGamePriceBy = By.XPath("//div[@id=\"search_resultsRows\"]//a[1]//div[contains(@class,\"price\")]//@data-price-final");
+        private By FirstGamePriceBy = By.XPath("//div[@id=\"search_resultsRows\"]//a[1]//div[contains(@class,\"price\")]");
         private IWebDriver driver;
         private WebDriverWait wait;
 
@@ -55,13 +55,37 @@ namespace Task2.Pages
             FirstTag.Click();
             FirstTag.Click();
             var ActionTag = wait.Until(e => e.FindElement(ActionTagBy));
-            Thread.Sleep(100);
+            Thread.Sleep(1000);
             var ActionTagCount = Int32.Parse(driver.FindElement(ActionTagCountBy).Text.Replace(" ",""));
             ActionTag.Click();
+            Thread.Sleep(1000);
             var ActionTagCheck = wait.Until(e => e.FindElements(ActionTagCheckBy)).Count > 0;
             var GameList = driver.FindElements(GameListBy);
             var CountCheck = (ActionTagCount == GameList.Count);
             return (ActionTagCheck, CountCheck);
+        }
+
+        public TopSellersPage GetFirstGameTitle(ref string title)
+        {
+            title = driver.FindElement(FirstGameTitleBy).Text;
+            return this;
+        }
+
+        public TopSellersPage GetFirstGameRelease(ref string release)
+        {
+            release = driver.FindElement(FirstGameReleaseBy).Text;
+            return this;
+        }
+
+        public TopSellersPage GetFirstGamePrice(ref decimal price)
+        {
+            string FinalPrice = driver.FindElement(FirstGamePriceBy).GetAttribute("data-price-final");
+            price = Convert.ToDecimal(FinalPrice) / 100;
+            return this;
+        }
+        public void OpenFirstGamePage()
+        {
+            driver.FindElement(FirstGameBy).Click();
         }
     }
 }
