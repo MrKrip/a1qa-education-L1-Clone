@@ -5,11 +5,11 @@ using WebDriverManager.DriverConfigs.Impl;
 
 namespace Task2.Drivers
 {
-    sealed class Chrome
+    public static class Chrome
     {
         private static IWebDriver Instance;
 
-        public IWebDriver GetInstance()
+        public static IWebDriver GetInstance()
         {
             if(Instance==null)
             {
@@ -19,6 +19,11 @@ namespace Task2.Drivers
                 Instance = new ChromeDriver(options);
             }
             return Instance;
+        }
+
+        public static void GoToPage(string StrURL)
+        {
+            GetInstance().Navigate().GoToUrl(StrURL);
         }
     }
 }

@@ -11,6 +11,7 @@ namespace Task2.Pages
         private By GamePriceBy = By.XPath("//div[contains(@class,\"game_purchase_price\")]");
         private IWebDriver driver;
         private WebDriverWait wait;
+
         public GameDetailsPage(IWebDriver webDriver)
         {
             driver = webDriver;

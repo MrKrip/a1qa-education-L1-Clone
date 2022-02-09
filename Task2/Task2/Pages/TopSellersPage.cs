@@ -30,7 +30,7 @@ namespace Task2.Pages
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
 
-        public bool ChooseLinuxOS()
+        public bool IsLinuxOSChose()
         {
             var LinuxOS = driver.FindElement(LinuxCheckSpanBy);
             LinuxOS.Click();
@@ -38,25 +38,24 @@ namespace Task2.Pages
             return LinuxCheck;
         }
 
-        public bool ChooseNumberOfPlayers()
+        public bool AreNumberOfPlayersChosen()
         {
             var NumOfPlayers = driver.FindElement(NumberOfPlayersBy);
-            NumOfPlayers.Click();            
+            NumOfPlayers.Click();
             var LANCoop = wait.Until(e => e.FindElement(LANCoopBy));
             //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(LANCoop));
             Thread.Sleep(1000);
             LANCoop.Click();
-            var LanCoopCheck = driver.FindElements(LANCoopCheckBy).Count > 0;
-            return LanCoopCheck;
+            return driver.FindElements(LANCoopCheckBy).Count > 0;
         }
-        public (bool, bool) ChooseTag()
+        public (bool, bool) IsTagChosen()
         {
             var FirstTag = driver.FindElement(FirstTagBy);
             FirstTag.Click();
             FirstTag.Click();
             var ActionTag = wait.Until(e => e.FindElement(ActionTagBy));
             Thread.Sleep(1000);
-            var ActionTagCount = Int32.Parse(driver.FindElement(ActionTagCountBy).Text.Replace(" ",""));
+            var ActionTagCount = Int32.Parse(driver.FindElement(ActionTagCountBy).Text.Replace(" ", ""));
             ActionTag.Click();
             Thread.Sleep(1000);
             var ActionTagCheck = wait.Until(e => e.FindElements(ActionTagCheckBy)).Count > 0;

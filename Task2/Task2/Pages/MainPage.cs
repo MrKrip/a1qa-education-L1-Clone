@@ -29,12 +29,12 @@ namespace Task2.Pages
         public MainPage ClickAboutButton()
         {
 
-            var AboutLink = wait.Until(e=>e.FindElement(AboutLinkBy));
+            var AboutLink = wait.Until(e => e.FindElement(AboutLinkBy));
             AboutLink.Click();
             return this;
         }
 
-        public bool ChekPage()
+        public bool IsPageOpened()
         {
             var Indicator = driver.FindElements(MainPageIndicator);
             return Indicator.Count > 0;
@@ -44,7 +44,7 @@ namespace Task2.Pages
         {
             var NoteWorthy = driver.FindElement(NoteWorthyBy);
             Actions actionProvider = new Actions(driver);
-            actionProvider.MoveToElement(NoteWorthy).Build().Perform();            
+            actionProvider.MoveToElement(NoteWorthy).Build().Perform();
             wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(TopSellersLinkBy));
             var TopSellersLink = driver.FindElement(TopSellersLinkBy);
             TopSellersLink.Click();

@@ -7,7 +7,6 @@ namespace Task2.Pages
 {
     class AboutPage
     {
-        private string PageUrl = "https://store.steampowered.com/about/";
         private By GamersOnlineBy = By.XPath("//div[contains(@class,\"gamers_online\")]//parent::div[@class=\"online_stat\"]");
         private By GamersInGameBy = By.XPath("//div[contains(@class,\"gamers_in_game\")]//parent::div[@class=\"online_stat\"]");
         private IWebDriver driver;
@@ -19,11 +18,10 @@ namespace Task2.Pages
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
 
-        public bool CheckPage()
+        public bool IsPageOpened()
         {
             var GamersOnline = driver.FindElements(GamersOnlineBy);
-            var GamersInGame = driver.FindElements(GamersInGameBy);
-            return GamersInGame.Count>0 && GamersOnline.Count>0;
+            return GamersOnline.Count > 0;
         }
 
         public bool CheckNumberOfGamers()
@@ -32,7 +30,7 @@ namespace Task2.Pages
             var GamersInGame = driver.FindElement(GamersInGameBy).Text.Split("\n").Last().Replace(",", "");
             int Online = Int32.Parse(GamersOnline);
             int InGame = Int32.Parse(GamersInGame);
-            return Online>=InGame;
+            return Online >= InGame;
         }
     }
 }

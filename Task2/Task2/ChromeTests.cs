@@ -1,42 +1,29 @@
 using NUnit.Framework;
-using OpenQA.Selenium;
 using Task2.Drivers;
 using Task2.Pages;
+using Task2.Test_conditions;
 
 namespace Task2
 {
-    public class Tests
+    public class Tests : ChromeBaseTest
     {
-        private IWebDriver driver;
-        private Chrome Instance = new Chrome();
-        [SetUp]
-        public void Setup()
-        {
-            driver = Instance.GetInstance();
-        }
-        [TearDown]
-        public void CleanUp()
-        {
-            driver.Quit();
-        }
 
         [Test]
         public void TestCase1()
         {
             MainPage mainPage = new MainPage(driver);
             AboutPage aboutPage = new AboutPage(driver);
-            var IsMainPageOpen = mainPage
-                .GoToPage()
-                .ChekPage();
+            Chrome.GoToPage(Config["MainPageUrl"]);
+            var IsMainPageOpen = mainPage.IsPageOpened();
             Assert.IsTrue(IsMainPageOpen, "Main page not open");
             mainPage.ClickAboutButton();
-            var IsAboutPageOpen = aboutPage.CheckPage();
+            var IsAboutPageOpen = aboutPage.IsPageOpened();
             Assert.IsTrue(IsAboutPageOpen, "About page not open");
             var IsNumbersOfGamersCorrect = aboutPage.CheckNumberOfGamers();
             Assert.IsTrue(IsNumbersOfGamersCorrect, "There are more players in the game than online");
-            IsMainPageOpen= mainPage
+            IsMainPageOpen = mainPage
                 .GoToPage()
-                .ChekPage();
+                .IsPageOpened();
             Assert.IsTrue(IsMainPageOpen, "Main page not open");
         }
         [Test]
@@ -45,24 +32,23 @@ namespace Task2
             MainPage mainPage = new MainPage(driver);
             TopSellersPage sellersPage = new TopSellersPage(driver);
             GameDetailsPage detailsPage = new GameDetailsPage(driver);
-            var IsMainPageOpen = mainPage
-               .GoToPage()
-               .ChekPage();
+            Chrome.GoToPage(Config["MainPageUrl"]);
+            var IsMainPageOpen = mainPage.IsPageOpened();
             Assert.IsTrue(IsMainPageOpen, "Main page not open");
 
             mainPage.ClickTopSellersLink();
-            var OSCheck = sellersPage.ChooseLinuxOS();
+            var OSCheck = sellersPage.IsLinuxOSChose();
             Assert.IsTrue(OSCheck, "Linux not selected");
 
-            var LanCoopCheck = sellersPage.ChooseNumberOfPlayers();
+            var LanCoopCheck = sellersPage.AreNumberOfPlayersChosen();
             Assert.IsTrue(LanCoopCheck, "LAN-Coop not selected");
 
-            (var TagCheck, var CountCheck) = sellersPage.ChooseTag();
-            Assert.IsTrue(TagCheck,"Tag not selected");
+            (var TagCheck, var CountCheck) = sellersPage.IsTagChosen();
+            Assert.IsTrue(TagCheck, "Tag not selected");
             Assert.IsTrue(CountCheck, "The specified number of results for the query does not match the number of games in the list");
 
-            string SellersGameTitle=string.Empty, SellersGameRelease=string.Empty;
-            decimal SellersGamePrice=0;
+            string SellersGameTitle = string.Empty, SellersGameRelease = string.Empty;
+            decimal SellersGamePrice = 0;
             sellersPage.GetFirstGameTitle(ref SellersGameTitle)
                 .GetFirstGameRelease(ref SellersGameRelease)
                 .GetFirstGamePrice(ref SellersGamePrice)
