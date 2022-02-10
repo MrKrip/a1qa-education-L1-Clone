@@ -1,18 +1,17 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
-using System;
 using Task2.Util;
 
 namespace Task2.Pages
 {
     class MainPage
     {
-        private string MainPageUrl = "https://store.steampowered.com/";
         private By MainPageIndicator = By.XPath("//div[contains(@class,\"home\")]");
         private By AboutLinkBy = By.XPath("//div[@id=\"global_header\"]//a[contains(@href,\"about\") and contains(@class,\"menuitem\")]");
         private By NoteWorthyBy = By.XPath("//div[@id=\"noteworthy_tab\"]");
         private By TopSellersLinkBy = By.XPath("//div[contains(@class,\"focus\")]//following-sibling::div[@id=\"noteworthy_flyout\"]//a[contains(@href,\"topsellers\")]");
+        private By CommunityBy = By.XPath("//div[contains(@class,'supernav_container')]//a[contains(@data-tooltip-content,'community')]");
+        private By MarketLinkBy = By.XPath("//div[contains(@class,'supernav_content')]//a[contains(@href,'market')]");
         private IWebDriver driver;
 
         public MainPage(IWebDriver webDriver)
