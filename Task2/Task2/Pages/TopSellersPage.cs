@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Threading;
+using Task2.Util;
 
 namespace Task2.Pages
 {
@@ -22,12 +23,10 @@ namespace Task2.Pages
         private By FirstGameReleaseBy = By.XPath("//div[@id=\"search_resultsRows\"]//a[1]//div[contains(@class,\"released\")]");
         private By FirstGamePriceBy = By.XPath("//div[@id=\"search_resultsRows\"]//a[1]//div[contains(@class,\"price\")]");
         private IWebDriver driver;
-        private WebDriverWait wait;
 
         public TopSellersPage(IWebDriver webDriver)
         {
             driver = webDriver;
-            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
 
         public bool IsLinuxOSChose()
@@ -42,7 +41,7 @@ namespace Task2.Pages
         {
             var NumOfPlayers = driver.FindElement(NumberOfPlayersBy);
             NumOfPlayers.Click();
-            var LANCoop = wait.Until(e => e.FindElement(LANCoopBy));
+            var LANCoop = WaiterUtil.WaitFindElement(LANCoopBy);
             //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(LANCoop));
             Thread.Sleep(1000);
             LANCoop.Click();
@@ -53,12 +52,12 @@ namespace Task2.Pages
             var FirstTag = driver.FindElement(FirstTagBy);
             FirstTag.Click();
             FirstTag.Click();
-            var ActionTag = wait.Until(e => e.FindElement(ActionTagBy));
+            var ActionTag = WaiterUtil.WaitFindElement(ActionTagBy);
             Thread.Sleep(1000);
             var ActionTagCount = Int32.Parse(driver.FindElement(ActionTagCountBy).Text.Replace(" ", ""));
             ActionTag.Click();
             Thread.Sleep(1000);
-            var ActionTagCheck = wait.Until(e => e.FindElements(ActionTagCheckBy)).Count > 0;
+            var ActionTagCheck = WaiterUtil.WaitFindElements(ActionTagCheckBy).Count > 0;
             var GameList = driver.FindElements(GameListBy);
             var CountCheck = (ActionTagCount == GameList.Count);
             return (ActionTagCheck, CountCheck);

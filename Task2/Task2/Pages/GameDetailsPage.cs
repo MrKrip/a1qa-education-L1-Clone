@@ -10,12 +10,10 @@ namespace Task2.Pages
         private By GameReleaseDateBy = By.XPath("//div[contains(@class,\"release_date\")]//div[contains(@class,\"date\")]");
         private By GamePriceBy = By.XPath("//div[contains(@class,\"game_purchase_price\")]");
         private IWebDriver driver;
-        private WebDriverWait wait;
 
         public GameDetailsPage(IWebDriver webDriver)
         {
             driver = webDriver;
-            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
 
         public GameDetailsPage GetGameTitle(ref string title)

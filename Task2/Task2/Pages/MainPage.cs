@@ -2,6 +2,7 @@
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
+using Task2.Util;
 
 namespace Task2.Pages
 {
@@ -13,23 +14,16 @@ namespace Task2.Pages
         private By NoteWorthyBy = By.XPath("//div[@id=\"noteworthy_tab\"]");
         private By TopSellersLinkBy = By.XPath("//div[contains(@class,\"focus\")]//following-sibling::div[@id=\"noteworthy_flyout\"]//a[contains(@href,\"topsellers\")]");
         private IWebDriver driver;
-        private WebDriverWait wait;
 
         public MainPage(IWebDriver webDriver)
         {
             driver = webDriver;
-            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10));
         }
 
-        public MainPage GoToPage()
-        {
-            driver.Navigate().GoToUrl(MainPageUrl);
-            return this;
-        }
         public MainPage ClickAboutButton()
         {
 
-            var AboutLink = wait.Until(e => e.FindElement(AboutLinkBy));
+            var AboutLink = WaiterUtil.WaitFindElement(AboutLinkBy);
             AboutLink.Click();
             return this;
         }
@@ -45,7 +39,7 @@ namespace Task2.Pages
             var NoteWorthy = driver.FindElement(NoteWorthyBy);
             Actions actionProvider = new Actions(driver);
             actionProvider.MoveToElement(NoteWorthy).Build().Perform();
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(TopSellersLinkBy));
+            WaiterUtil.WaitClickible(TopSellersLinkBy);
             var TopSellersLink = driver.FindElement(TopSellersLinkBy);
             TopSellersLink.Click();
             return this;
