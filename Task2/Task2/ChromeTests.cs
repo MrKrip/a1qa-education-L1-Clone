@@ -25,6 +25,7 @@ namespace Task2
             IsMainPageOpen = mainPage.IsPageOpened();
             Assert.IsTrue(IsMainPageOpen, "Main page not open");
         }
+
         [Test]
         public void TestCase2()
         {
@@ -62,6 +63,24 @@ namespace Task2
             Assert.AreEqual(SellersGameTitle, DetailsGameTitle, "The title on the \"Top Sellers\" page does not match the title on the \"Game Details\" page.");
             Assert.AreEqual(SellersGameRelease, DetailsGameRelease, "The release date on the \"Top Sellers\" page does not match the title on the \"Game Details\" page.");
             Assert.AreEqual(SellersGamePrice, DetailsGamePrice, "The price on the \"Top Sellers\" page does not match the title on the \"Game Details\" page.");
+        }
+
+        [Test]
+        public void TestCase3()
+        {
+            MainPage mainPage = new MainPage(driver);
+            CommunityMarketPage community = new CommunityMarketPage(driver);
+
+            Chrome.GoToPage(Config["MainPageUrl"]);
+            var IsMainPageOpen = mainPage.IsPageOpened();
+            Assert.IsTrue(IsMainPageOpen, "Main page not open");
+
+            mainPage.ClickMarketLink();
+            var IsCommunityPageOpen = community.IsPgeOpened();
+            Assert.IsTrue(IsMainPageOpen, "Community Market page not open");
+
+            var IsAdvanceOptionsOpened = community.IsAdvancedOptionsOpened();
+            Assert.IsTrue(IsAdvanceOptionsOpened, "Advance Options not open");
         }
     }
 }

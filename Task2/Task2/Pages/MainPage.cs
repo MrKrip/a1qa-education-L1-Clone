@@ -43,5 +43,16 @@ namespace Task2.Pages
             TopSellersLink.Click();
             return this;
         }
+
+        public MainPage ClickMarketLink()
+        {
+            var Community = driver.FindElement(CommunityBy);
+            Actions action = new Actions(driver);
+            action.MoveToElement(Community).Build().Perform();
+            WaiterUtil.WaitClickible(MarketLinkBy);
+            var MarketLink = driver.FindElement(MarketLinkBy);
+            MarketLink.Click();
+            return this;
+        }
     }
 }
