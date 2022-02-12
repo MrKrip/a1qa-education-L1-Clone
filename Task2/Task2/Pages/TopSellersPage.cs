@@ -1,4 +1,7 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using System;
 using System.Threading;
 using Task2.Util;
@@ -10,13 +13,13 @@ namespace Task2.Pages
         private By LinuxCheckSpanBy = By.XPath("//span[@data-value=\"linux\"]");
         private By LinuxCheckBy = By.XPath("//span[@data-value=\"linux\" and contains(@class,\"checked\")]");
         private By NumberOfPlayersBy = By.XPath("//div[@data-collapse-name=\"category3\"]");
-        private By LANCoopBy = By.XPath("//span[@data-value=\"48\"]");
+        private By LANCoopBy = By.XPath("//div[@data-value='48']");
         private By LANCoopCheckBy = By.XPath("//span[@data-value=\"48\" and contains(@class,\"checked\")]");
         private By FirstTagBy = By.XPath("//div[@id=\"TagFilter_Container\"]//span[1]");
         private By ActionTagBy = By.XPath("//div[@id=\"TagFilter_Container\"]//span[@data-value=\"19\" and @data-param=\"tags\"]");
         private By ActionTagCountBy = By.XPath("//div[@id=\"TagFilter_Container\"]//span[@data-value=\"19\" and @data-param=\"tags\"]//span[contains(@class,\"count\")]");
         private By ActionTagCheckBy = By.XPath("//div[@id=\"TagFilter_Container\"]//span[@data-value=\"19\" and @data-param=\"tags\" and contains(@class,\"checked\")]");
-        private By GameListBy = By.XPath("//div[@id=\"search_resultsRows\"]//a");
+        private By GameListBy = By.XPath("//div[@id='search_resultsRows']//a");
         private By FirstGameBy = By.XPath("//div[@id=\"search_resultsRows\"]//a[1]");
         private By FirstGameTitleBy = By.XPath("//div[@id=\"search_resultsRows\"]//a[1]//span[contains(@class,\"title\")]");
         private By FirstGameReleaseBy = By.XPath("//div[@id=\"search_resultsRows\"]//a[1]//div[contains(@class,\"released\")]");
@@ -41,8 +44,8 @@ namespace Task2.Pages
             var NumOfPlayers = driver.FindElement(NumberOfPlayersBy);
             NumOfPlayers.Click();
             var LANCoop = WaiterUtil.WaitFindElement(LANCoopBy);
-            //wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(LANCoop));
-            Thread.Sleep(1000);
+            Actions action = new Actions(driver);
+            action.MoveToElement(LANCoop).Perform();
             LANCoop.Click();
             return driver.FindElements(LANCoopCheckBy).Count > 0;
         }
@@ -52,12 +55,13 @@ namespace Task2.Pages
             FirstTag.Click();
             FirstTag.Click();
             var ActionTag = WaiterUtil.WaitFindElement(ActionTagBy);
-            Thread.Sleep(1000);
-            var ActionTagCount = Int32.Parse(driver.FindElement(ActionTagCountBy).Text.Replace(" ", ""));
+            WaiterUtil.WaitAllElementsVisible(GameListBy);
+            var ActionTagCount = Int32.Parse(driver.FindElement(ActionTagCountBy).Text.Replace(" ", ""));            
             ActionTag.Click();
-            Thread.Sleep(1000);
             var ActionTagCheck = WaiterUtil.WaitFindElements(ActionTagCheckBy).Count > 0;
-            var GameList = driver.FindElements(GameListBy);
+            //WaiterUtil.WaitAllElementsVisible(GameListBy); //Вообще без понятия почему здесь выдает WebDriverTimeoutException, если я уже использовал эту функцию на 58 строке
+            Thread.Sleep(1000);
+            var GameList = WaiterUtil.WaitFindElements(GameListBy);
             var CountCheck = (ActionTagCount == GameList.Count);
             return (ActionTagCheck, CountCheck);
         }

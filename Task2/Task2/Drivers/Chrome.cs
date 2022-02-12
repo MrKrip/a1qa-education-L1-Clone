@@ -15,6 +15,7 @@ namespace Task2.Drivers
             {
                 new DriverManager().SetUpDriver(new ChromeConfig());
                 var options =new ChromeOptions();
+                options.AddArgument("--start-maximized");
                 options.AddArgument("--incognito");
                 Instance = new ChromeDriver(options);
             }

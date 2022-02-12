@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using System;
 using System.Collections.ObjectModel;
 
@@ -25,7 +26,16 @@ namespace Task2.Util
 
         public static void WaitClickible(By Element)
         {
-            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(Element));
+            wait.Until(ExpectedConditions.ElementToBeClickable(Element));
+        }
+
+        public static void WaitAllElementsVisible(By Elements)
+        {
+            wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(Elements));
+        }
+        public static void WaitElementVisible(By Elements)
+        {
+            wait.Until(ExpectedConditions.ElementIsVisible(Elements));
         }
     }
 }
