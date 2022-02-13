@@ -23,6 +23,7 @@ namespace Task2.Test_conditions
         [TearDown]
         public void CleanUp()
         {
+            BrowserFactory.ClearInstance("Chrome");
             driver.Quit();
         }
     }

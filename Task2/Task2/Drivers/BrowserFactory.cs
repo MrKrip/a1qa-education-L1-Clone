@@ -57,6 +57,11 @@ namespace Task2.Drivers
             }
         }
 
+        public static void ClearInstance(string browserName)
+        {
+            Drivers.Remove(browserName);
+        }
+
         public static void GoToPage(string StrURL, string browserName)
         {
             GetInstance(browserName).Navigate().GoToUrl(StrURL);
