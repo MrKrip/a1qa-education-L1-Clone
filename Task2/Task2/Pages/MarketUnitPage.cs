@@ -19,6 +19,8 @@ namespace Task2.Pages
         public MarketUnitPage(IWebDriver webDriver)
         {
             driver = webDriver;
+            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\FilterData.json";
+            Filter = ParseJSON.GetDataFile<FilterModel>(path);
         }
 
         public MarketUnitPage GetItemName(ref string Name)
@@ -29,12 +31,10 @@ namespace Task2.Pages
 
         public (bool, bool, bool) IsItemMatchesFilters()
         {
-            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\FilterData.json";
-            Filter = ParseJSON.GetDataFile<FilterModel>(path);
             bool NameCheck = WaiterUtil.WaitFindElement(GameNameBy).Text.Contains(Filter.Game);
             bool ItemRaritycheck = WaiterUtil.WaitFindElement(ItemTypeBy).Text.Contains(Filter.Rarity);
             bool HeroCheck = WaiterUtil.WaitFindElement(DiscriptionBy).Text.Contains(Filter.Hero);
-            return (NameCheck,ItemRaritycheck,HeroCheck);
+            return (NameCheck, ItemRaritycheck, HeroCheck);
         }
     }
 }

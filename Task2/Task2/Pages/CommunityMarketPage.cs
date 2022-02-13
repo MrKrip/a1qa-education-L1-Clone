@@ -50,6 +50,8 @@ namespace Task2.Pages
         public CommunityMarketPage(IWebDriver webDriver)
         {
             driver = webDriver;
+            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\FilterData.json";
+            Filter = ParseJSON.GetDataFile<FilterModel>(path);
         }
 
         public bool IsPageOpened()
@@ -66,8 +68,6 @@ namespace Task2.Pages
 
         public CommunityMarketPage FillFilters()
         {
-            string path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\FilterData.json";
-            Filter = ParseJSON.GetDataFile<FilterModel>(path);
             var GameList = driver.FindElement(GamesListBy);
             GameList.Click();
             Game = Filter.Game;
