@@ -70,17 +70,43 @@ namespace Task2
         {
             MainPage mainPage = new MainPage(driver);
             CommunityMarketPage community = new CommunityMarketPage(driver);
+            MarketUnitPage unitPage = new MarketUnitPage(driver);
 
             Chrome.GoToPage(Config["MainPageUrl"]);
             var IsMainPageOpen = mainPage.IsPageOpened();
             Assert.IsTrue(IsMainPageOpen, "Main page not open");
 
             mainPage.ClickMarketLink();
-            var IsCommunityPageOpen = community.IsPgeOpened();
+            var IsCommunityPageOpen = community.IsPageOpened();
             Assert.IsTrue(IsMainPageOpen, "Community Market page not open");
 
             var IsAdvanceOptionsOpened = community.IsAdvancedOptionsOpened();
             Assert.IsTrue(IsAdvanceOptionsOpened, "Advance Options not open");
+
+            bool GameCheck, HeroCheck, RarityCheck, SearchBoxCheck, First5Results;
+            (GameCheck, HeroCheck, RarityCheck, SearchBoxCheck, First5Results) = community.FillFilters()
+                .ClickSerchButton()
+                .IsFilterWork();
+            Assert.IsTrue(GameCheck, "Missing Game filter");
+            Assert.IsTrue(HeroCheck, "Missing Hero filter");
+            Assert.IsTrue(RarityCheck, "Missing Rarity filter");
+            Assert.IsTrue(SearchBoxCheck, "Missing Search filter");
+            Assert.IsTrue(First5Results, "The first 5 results do not match the search filter");
+
+            var FilterUpdateCheck = community.IsFilerUpdatingWork();
+            Assert.IsTrue(FilterUpdateCheck, "Search result does not change");
+
+            string ItemInCommunityPage = string.Empty;
+            community.GetItemName(ref ItemInCommunityPage)
+                .ClickFirstElement();
+            string ItemInMarketUnitPage = string.Empty;
+            bool NameCheck, ItemRaritycheck, HeroUnitCheck;
+            (NameCheck, ItemRaritycheck, HeroUnitCheck) = unitPage.GetItemName(ref ItemInMarketUnitPage)
+                .IsItemMatchesFilters();
+            Assert.AreEqual(ItemInCommunityPage, ItemInMarketUnitPage, "The item name on the \"Community Market\" page does not match the title on the \"Item Details\" page.");
+            Assert.IsTrue(NameCheck, "The item game name on the \"Item Details(Community Market)\" page does not match the filters.");
+            Assert.IsTrue(ItemRaritycheck, "The item rarity on the \"Item Details(Community Market)\" page does not match the filters.");
+            Assert.IsTrue(HeroUnitCheck, "The item hero on the \"Item Details(Community Market)\" page does not match the filters.");
         }
     }
 }
