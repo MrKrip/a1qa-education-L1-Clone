@@ -13,7 +13,7 @@ namespace Task2
         {
             MainPage mainPage = new MainPage(driver);
             AboutPage aboutPage = new AboutPage(driver);
-            Chrome.GoToPage(Config["MainPageUrl"]);
+            BrowserFactory.GoToPage(Config["MainPageUrl"], "Chrome");
             var IsMainPageOpen = mainPage.IsPageOpened();
             Assert.IsTrue(IsMainPageOpen, "Main page not open");
             mainPage.ClickAboutButton();
@@ -21,7 +21,7 @@ namespace Task2
             Assert.IsTrue(IsAboutPageOpen, "About page not open");
             var IsNumbersOfGamersCorrect = aboutPage.CheckNumberOfGamers();
             Assert.IsTrue(IsNumbersOfGamersCorrect, "There are more players in the game than online");
-            Chrome.GoToPage(Config["MainPageUrl"]);
+            BrowserFactory.GoToPage(Config["MainPageUrl"], "Chrome");
             IsMainPageOpen = mainPage.IsPageOpened();
             Assert.IsTrue(IsMainPageOpen, "Main page not open");
         }
@@ -32,7 +32,7 @@ namespace Task2
             MainPage mainPage = new MainPage(driver);
             TopSellersPage sellersPage = new TopSellersPage(driver);
             GameDetailsPage detailsPage = new GameDetailsPage(driver);
-            Chrome.GoToPage(Config["MainPageUrl"]);
+            BrowserFactory.GoToPage(Config["MainPageUrl"], "Chrome");
             var IsMainPageOpen = mainPage.IsPageOpened();
             Assert.IsTrue(IsMainPageOpen, "Main page not open");
 
@@ -72,7 +72,7 @@ namespace Task2
             CommunityMarketPage community = new CommunityMarketPage(driver);
             MarketUnitPage unitPage = new MarketUnitPage(driver);
 
-            Chrome.GoToPage(Config["MainPageUrl"]);
+            BrowserFactory.GoToPage(Config["MainPageUrl"], "Chrome");
             var IsMainPageOpen = mainPage.IsPageOpened();
             Assert.IsTrue(IsMainPageOpen, "Main page not open");
 

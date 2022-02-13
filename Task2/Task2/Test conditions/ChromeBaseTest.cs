@@ -16,7 +16,7 @@ namespace Task2.Test_conditions
         [SetUp]
         public void Setup()
         {
-            driver = Chrome.GetInstance();
+            driver = BrowserFactory.GetInstance("Chrome");
             Config = ParseJSON.GetConfigFile(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\Config.json");
             WaiterUtil.SetWaiter(driver, Int32.Parse(Config["WaitTime"]));
         }
