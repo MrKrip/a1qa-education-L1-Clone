@@ -4,10 +4,10 @@ namespace Task3.Pages
 {
     public abstract class BasePage
     {
-        BaseElement DefaultElement;
-        string Name;
+        protected BaseElement DefaultElement;
+        protected string Name;
 
-        public BasePage(string name,BaseElement Base)
+        public BasePage(string name, BaseElement Base)
         {
             Name = name;
             DefaultElement = Base;

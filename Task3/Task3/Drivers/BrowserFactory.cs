@@ -21,7 +21,7 @@ namespace Task3.Drivers
             {
                 case "Firefox":
                     {
-                        if (Instatnce==null)
+                        if (Instatnce == null)
                         {
                             new DriverManager().SetUpDriver(new FirefoxConfig());
                             var options = new FirefoxOptions();
@@ -50,9 +50,5 @@ namespace Task3.Drivers
             }
         }
 
-        public static void GoToPage(string StrURL, string browserName)
-        {
-            GetInstance().Navigate().GoToUrl(StrURL);
-        }
     }
 }

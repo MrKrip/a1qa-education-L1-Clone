@@ -35,5 +35,10 @@ namespace Task3.Util
         {
             new WebDriverWait(BrowserFactory.GetInstance(), TimeSpan.FromSeconds(Time)).Until(ExpectedConditions.ElementIsVisible(Elements));
         }
+
+        public static IAlert WaitAlert()
+        {
+            return new WebDriverWait(BrowserFactory.GetInstance(), TimeSpan.FromSeconds(Time)).Until(ExpectedConditions.AlertIsPresent());
+        }
     }
 }

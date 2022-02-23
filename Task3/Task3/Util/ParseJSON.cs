@@ -10,7 +10,7 @@ namespace Task3.Util
 {
     public static class ParseJSON
     {
-        public static Dictionary<string,string> GetConfigFile(string path)
+        public static Dictionary<string, string> GetConfigFile(string path)
         {
             var json = File.ReadAllText(path);
             return JsonConvert.DeserializeObject<Dictionary<string, string>>(json);

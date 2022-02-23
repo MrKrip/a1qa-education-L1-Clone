@@ -5,10 +5,10 @@ namespace Task3.Elements
 {
     public abstract class BaseElement
     {
-        private string Xpath;
-        private string Name;
+        protected string Xpath;
+        protected string Name;
 
-        public BaseElement(string xpath,string name)
+        public BaseElement(string xpath, string name)
         {
             Xpath = xpath;
             Name = name;

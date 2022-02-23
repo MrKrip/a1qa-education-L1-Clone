@@ -1,0 +1,5 @@
+{
+  "DefaultAlert": "You clicked a button",
+  "ConfirmAlert": "Do you confirm action?",
+  "ConfirmResult": "You selected Ok"
+}

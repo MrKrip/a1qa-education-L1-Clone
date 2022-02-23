@@ -8,7 +8,7 @@ using Task3.Util;
 
 namespace Task2.Test_conditions
 {
-    public class ChromeBaseTest
+    public class BaseTest
     {
         protected IWebDriver driver;
         protected Dictionary<string, string> Config;
@@ -16,13 +16,13 @@ namespace Task2.Test_conditions
         [SetUp]
         public void Setup()
         {
-            driver = BrowserFactory.GetInstance();
+            BrowserFactory.GetInstance();
             Config = ParseJSON.GetConfigFile(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\Config.json");
         }
         [TearDown]
         public void CleanUp()
         {
-            driver.Quit();
+            DriverUtil.Quit();
         }
     }
 }
