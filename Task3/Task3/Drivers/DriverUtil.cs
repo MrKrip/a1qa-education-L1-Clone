@@ -24,5 +24,19 @@ namespace Task3.Drivers
             return BrowserFactory.GetInstance().SwitchTo().Alert();
         }
 
+        public static void SwitchToDefault()
+        {
+            BrowserFactory.GetInstance().SwitchTo().DefaultContent();
+        }
+
+        public static void SwitchToFrame(IWebElement el)
+        {
+            BrowserFactory.GetInstance().SwitchTo().Frame(el);
+        }
+
+        public static void SwitchToFrame(int el)
+        {
+            BrowserFactory.GetInstance().SwitchTo().Frame(el);
+        }
     }
 }

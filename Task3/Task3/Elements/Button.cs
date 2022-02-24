@@ -10,7 +10,5 @@ namespace Task3.Elements
     {
         public Button(string xpath, string name) : base(xpath, name)
         { }
-
-
     }
 }

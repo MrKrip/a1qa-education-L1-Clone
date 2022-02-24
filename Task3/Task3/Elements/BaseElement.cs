@@ -14,7 +14,7 @@ namespace Task3.Elements
             Name = name;
         }
 
-        private IWebElement GetElement()
+        protected IWebElement GetElement()
         {
             return WaiterUtil.WaitFindElement(By.XPath(Xpath));
         }

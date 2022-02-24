@@ -13,7 +13,7 @@ namespace Task3.Pages
 {
     public class AlertsPage : BasePage
     {
-        private static Button Def = new Button("//div[contains(@class,'main-header') and contains(.,'Alerts')]", "Default element");
+        private static ContentForm Def = new ContentForm("//div[contains(@class,'main-header') and contains(.,'Alerts')]", "Default element");
         private Button AlertCategory = new Button("//div[contains(@class,'element-list')]//*[contains(.,'Alerts') and contains(@class,'btn')]", "Alert button in category submenu");
         private ContentForm AlertForm = new ContentForm("//div[@id='javascriptAlertsWrapper']", "Alert form");
         private Button AlertButton = new Button("//button[@id='alertButton']", "Default alert button");

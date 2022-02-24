@@ -32,5 +32,25 @@ namespace Task3
             Assert.IsTrue(Alerts.ConfirmAlert().IsAlertClosed(), "Alert not closed");
             Assert.IsTrue(Alerts.IsPromptAlertWork(RandStr), $"Prompt alert text does not match rand string({RandStr})");
         }
+
+        [Test]
+        public void TestCase2()
+        {
+            HomePage Home = new HomePage("Home page");
+            NestedFramesPage NestedFrames = new NestedFramesPage("Nested frames Page");
+            FramesPage FramePage = new FramesPage("Frames Page");
+            DriverUtil.GoToPage(Config["MainPageUrl"]);
+            Dictionary<string, string> TestData = ParseJSON.GetDataFile<Dictionary<string, string>>(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\AlertData.json");
+            Assert.IsTrue(Home.IsPageOpened(), "Home page not open");
+            Home.ClickAlertsLink();
+            NestedFrames.ChooseNestedFrameCategory();
+            Assert.IsTrue(NestedFrames.IsPageOpened(), "Nested frames page not open");
+            (bool Parent, bool Child) = NestedFrames.IsFramesCorrect(TestData["ParentFrameText"], TestData["ChildFarmeText"]);
+            Assert.IsTrue(Parent, "Parent frame text does not match test data");
+            Assert.IsTrue(Child, "Child frame text does not match test data");
+            FramePage.ChooseFrameCategory();
+            Assert.IsTrue(FramePage.IsPageOpened(), "Frames page not open");
+            Assert.IsTrue(FramePage.IsFrameTextMatch(),"Frames texts does not match");
+        }
     }
 }

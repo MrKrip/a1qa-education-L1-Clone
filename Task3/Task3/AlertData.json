@@ -1,5 +1,7 @@
 {
   "DefaultAlert": "You clicked a button",
   "ConfirmAlert": "Do you confirm action?",
-  "ConfirmResult": "You selected Ok"
+  "ConfirmResult": "You selected Ok",
+  "ParentFrameText": "Parent frame",
+  "ChildFarmeText": "Child Iframe"
 }
