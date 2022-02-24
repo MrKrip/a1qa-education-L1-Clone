@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Task2.Test_conditions;
 using Task3.Drivers;
+using Task3.Models;
 using Task3.Pages;
 using Task3.Util;
 
@@ -50,7 +51,23 @@ namespace Task3
             Assert.IsTrue(Child, "Child frame text does not match test data");
             FramePage.ChooseFrameCategory();
             Assert.IsTrue(FramePage.IsPageOpened(), "Frames page not open");
-            Assert.IsTrue(FramePage.IsFrameTextMatch(),"Frames texts does not match");
+            Assert.IsTrue(FramePage.IsFrameTextMatch(), "Frames texts does not match");
+        }
+
+        [Test]
+        public void TestCase3()
+        {
+            List<RegistrationModel> TestData = ParseJSON.GetDataFile<List<RegistrationModel>>(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\WebTablesData.json");
+            HomePage Home = new HomePage("Home page");
+            WebTabelsPage webTabels = new WebTabelsPage("Web tables page");
+            DriverUtil.GoToPage(Config["MainPageUrl"]);
+            Assert.IsTrue(Home.IsPageOpened(), "Home page not open");
+            Home.CleckElementsLink();
+            Assert.IsTrue(webTabels.ChooseWebTablesCategory().IsPageOpened(), "Web tables page not open");
+            Assert.IsTrue(webTabels.ClickAddButton().IsRegistrationFromOpened(), "Registration form not open");
+            webTabels.FillRegistrationForm(TestData[0]).SubmitRegistrationForm();
+            Assert.IsTrue(webTabels.IsRecordAdded(TestData[0]),"New record not added");
+            Assert.IsFalse(webTabels.DeleteRecord(TestData[0]).IsRecordAdded(TestData[0]),"Record is not deleted");
         }
     }
 }

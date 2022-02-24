@@ -11,6 +11,7 @@ namespace Task3.Pages
     {
         private static Button Def = new Button("//div[contains(@class,'card')]", "Default element");
         private Button Alerts = new Button("//div[contains(@class,'top-card') and div[contains(.,'Alerts')]]", "Alerts, Frame & Windows button");
+        private Button Elements = new Button("//div[contains(@class,'top-card') and div[contains(.,'Elements')]]", "Element button");
 
         public HomePage(string name) : base(name, Def)
         {
@@ -19,6 +20,12 @@ namespace Task3.Pages
         public HomePage ClickAlertsLink()
         {
             Alerts.Click();
+            return this;
+        }
+
+        public HomePage CleckElementsLink()
+        {
+            Elements.Click();
             return this;
         }
     }
