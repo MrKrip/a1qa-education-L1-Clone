@@ -13,7 +13,8 @@ namespace Task3
     {
         [Test]
         public void TestCase1()
-        {
+        {            
+            LoggerUtil.MakeLog(TestCaseMark+"Test Case 1 start"+TestCaseMark);
             HomePage Home = new HomePage("Home page");
             Dictionary<string, string> TestData = ParseJSON.GetDataFile<Dictionary<string, string>>(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\AlertData.json");
             AlertsPage Alerts = new AlertsPage("Alert Page");
@@ -37,6 +38,7 @@ namespace Task3
         [Test]
         public void TestCase2()
         {
+            LoggerUtil.MakeLog(TestCaseMark + "Test Case 2 start" + TestCaseMark);
             HomePage Home = new HomePage("Home page");
             NestedFramesPage NestedFrames = new NestedFramesPage("Nested frames Page");
             FramesPage FramePage = new FramesPage("Frames Page");
@@ -57,6 +59,7 @@ namespace Task3
         [Test]
         public void TestCase3()
         {
+            LoggerUtil.MakeLog(TestCaseMark + "Test Case 3 start" + TestCaseMark);
             List<RegistrationModel> TestData = ParseJSON.GetDataFile<List<RegistrationModel>>(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\WebTablesData.json");
             HomePage Home = new HomePage("Home page");
             WebTabelsPage webTabels = new WebTabelsPage("Web tables page");
@@ -73,6 +76,7 @@ namespace Task3
         [Test]
         public void TestCase4()
         {
+            LoggerUtil.MakeLog(TestCaseMark + "Test Case 4 start" + TestCaseMark);
             HomePage Home = new HomePage("Home page");
             BrowserWindowsPage browserWindows = new BrowserWindowsPage("Browser windows page");
             LinksPage Links = new LinksPage("Links page");

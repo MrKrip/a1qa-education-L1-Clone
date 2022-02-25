@@ -1,4 +1,5 @@
 ﻿using Task3.Drivers;
+using Task3.Util;
 
 namespace Task3.Elements
 {
@@ -9,6 +10,7 @@ namespace Task3.Elements
 
         public Frame SwitchTo()
         {
+            LoggerUtil.MakeLog($"Switching to {Name}");
             DriverUtil.SwitchToFrame(GetElement());
             return this;
         }

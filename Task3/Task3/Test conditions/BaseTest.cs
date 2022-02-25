@@ -11,11 +11,13 @@ namespace Task2.Test_conditions
     {
         protected IWebDriver driver;
         protected Dictionary<string, string> Config;
+        protected string TestCaseMark = new string('*', 10);
 
         [SetUp]
         public void Setup()
         {
             BrowserFactory.GetInstance();
+            LoggerUtil.InitLoger();
             Config = ParseJSON.GetConfigFile(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\Config.json");
         }
         [TearDown]
