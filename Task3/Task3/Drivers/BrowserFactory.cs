@@ -2,7 +2,6 @@
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using Task3.Util;
 using WebDriverManager;
@@ -48,6 +47,11 @@ namespace Task3.Drivers
                         throw new NotImplementedException();
                     }
             }
+        }
+
+        public static void ResetInstance()
+        {
+            Instatnce = null;
         }
 
     }

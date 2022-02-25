@@ -1,6 +1,6 @@
 ﻿namespace Task3.Models
 {
-    class RegistrationModel
+    public class RegistrationModel
     {
         public string UserID { get; set; }
         public string FirstName { get; set; }

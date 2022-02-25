@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Task3.Drivers;
+﻿using Task3.Drivers;
 using Task3.Elements;
 
 namespace Task3.Pages
 {
-    class FramesPage:BasePage
+    public class FramesPage:BasePage
     {
         private static ContentForm Def = new ContentForm("//div[contains(@class,'main-header') and text()='Frames']", "Default element");
         private Button FrameCategory = new Button("//div[contains(@class,'element-list')]//*[span[text()='Frames'] and contains(@class,'btn')]", "Frames button in category submenu");

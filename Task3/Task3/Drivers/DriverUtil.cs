@@ -1,9 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task3.Drivers
 {
@@ -17,6 +12,7 @@ namespace Task3.Drivers
         public static void Quit()
         {
             BrowserFactory.GetInstance().Quit();
+            BrowserFactory.ResetInstance();
         }
 
         public static IAlert SwitchToAlert()
@@ -37,6 +33,21 @@ namespace Task3.Drivers
         public static void SwitchToFrame(int el)
         {
             BrowserFactory.GetInstance().SwitchTo().Frame(el);
+        }
+
+        public static void SwitchToWindow(int id)
+        {
+            BrowserFactory.GetInstance().SwitchTo().Window(BrowserFactory.GetInstance().WindowHandles[id]);
+        }
+
+        public static void CloseTab()
+        {
+            BrowserFactory.GetInstance().Close();
+        }
+
+        public static string GetUrl()
+        {
+            return BrowserFactory.GetInstance().Url;
         }
     }
 }

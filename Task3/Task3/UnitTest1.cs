@@ -66,8 +66,31 @@ namespace Task3
             Assert.IsTrue(webTabels.ChooseWebTablesCategory().IsPageOpened(), "Web tables page not open");
             Assert.IsTrue(webTabels.ClickAddButton().IsRegistrationFromOpened(), "Registration form not open");
             webTabels.FillRegistrationForm(TestData[0]).SubmitRegistrationForm();
-            Assert.IsTrue(webTabels.IsRecordAdded(TestData[0]),"New record not added");
-            Assert.IsFalse(webTabels.DeleteRecord(TestData[0]).IsRecordAdded(TestData[0]),"Record is not deleted");
+            Assert.IsTrue(webTabels.IsRecordAdded(TestData[0]), "New record not added");
+            Assert.IsFalse(webTabels.DeleteRecord(TestData[0]).IsRecordAdded(TestData[0]), "Record is not deleted");
+        }
+
+        [Test]
+        public void TestCase4()
+        {
+            HomePage Home = new HomePage("Home page");
+            BrowserWindowsPage browserWindows = new BrowserWindowsPage("Browser windows page");
+            LinksPage Links = new LinksPage("Links page");
+            Dictionary<string, string> TestData = ParseJSON.GetDataFile<Dictionary<string, string>>(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\BrowserWindowsData.json");
+            DriverUtil.GoToPage(Config["MainPageUrl"]);
+            Assert.IsTrue(Home.IsPageOpened(), "Home page not open");
+            Home.ClickAlertsLink();
+            browserWindows.ChooseWindowsCategory();
+            Assert.IsTrue(browserWindows.IsPageOpened(), "Browser window page not open");
+            (bool UrlCheck, bool TabTextCheck) = browserWindows.ClickNewTabButton().IsTabOpened(TestData["Url"], TestData["NewTabText"]);
+            Assert.IsTrue(UrlCheck, "Url does not match test data ");
+            Assert.IsTrue(TabTextCheck, "Tab text not match test data ");
+            browserWindows.CloseTab();
+            Assert.IsTrue(browserWindows.IsPageOpened(), "Browser window page not open");
+            Assert.IsTrue(Links.ChooseLinksCategory().IsPageOpened(), "Links page not open");
+            Links.ClickHomeLink();
+            Assert.IsTrue(Home.IsPageOpened(), "Home page not open");
+            Assert.IsTrue(Links.ReturnToLinksPage().IsPageOpened(), "Links page not open");
         }
     }
 }

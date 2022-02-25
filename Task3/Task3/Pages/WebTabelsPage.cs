@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Task3.Elements;
+﻿using Task3.Elements;
 using Task3.Models;
 
 namespace Task3.Pages
 {
-    class WebTabelsPage : BasePage
+    public class WebTabelsPage : BasePage
     {
         private static ContentForm Def = new ContentForm("//div[contains(@class,'main-header') and text()='Web Tables']", "Default element");
         private Button WebTablesCategory = new Button("//div[contains(@class,'element-list')]//*[span[text()='Web Tables'] and contains(@class,'btn')]", "Web tables button in category submenu");

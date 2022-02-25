@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Task3.Drivers;
+﻿using Task3.Drivers;
 using Task3.Elements;
 
 namespace Task3.Pages
 {
-    class NestedFramesPage : BasePage
+    public class NestedFramesPage : BasePage
     {
         private static ContentForm Def = new ContentForm("//div[contains(@class,'main-header') and text()='Nested Frames']", "Default element");
         private Button NestedFrameCategory = new Button("//div[contains(@class,'element-list')]//*[contains(.,'Nested Frames') and contains(@class,'btn')]", "Nested frames button in category submenu");

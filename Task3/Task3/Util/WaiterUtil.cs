@@ -22,9 +22,9 @@ namespace Task3.Util
             return new WebDriverWait(BrowserFactory.GetInstance(), TimeSpan.FromSeconds(Time)).Until(e => e.FindElements(Element));
         }
 
-        public static void WaitClickible(By Element)
+        public static IWebElement WaitClickible(By Element)
         {
-            new WebDriverWait(BrowserFactory.GetInstance(), TimeSpan.FromSeconds(Time)).Until(ExpectedConditions.ElementToBeClickable(Element));
+           return new WebDriverWait(BrowserFactory.GetInstance(), TimeSpan.FromSeconds(Time)).Until(ExpectedConditions.ElementToBeClickable(Element));
         }
 
         public static void WaitAllElementsVisible(By Elements)
@@ -39,6 +39,11 @@ namespace Task3.Util
         public static IAlert WaitAlert()
         {
             return new WebDriverWait(BrowserFactory.GetInstance(), TimeSpan.FromSeconds(Time)).Until(ExpectedConditions.AlertIsPresent());
+        }
+
+        public static void WaitWindowHandles(int count)
+        {
+            new WebDriverWait(BrowserFactory.GetInstance(), TimeSpan.FromSeconds(Time)).Until(wd => wd.WindowHandles.Count == count);
         }
     }
 }

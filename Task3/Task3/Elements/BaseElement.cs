@@ -16,7 +16,7 @@ namespace Task3.Elements
 
         protected IWebElement GetElement()
         {
-            return WaiterUtil.WaitFindElement(By.XPath(Xpath));
+            return WaiterUtil.WaitClickible(By.XPath(Xpath));
         }
 
         public string GetText()
