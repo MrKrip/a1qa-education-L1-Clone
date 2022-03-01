@@ -15,13 +15,13 @@ namespace Task3
         public void TestCase1()
         {            
             LoggerUtil.MakeLog(TestCaseMark+"Test Case 1 start"+TestCaseMark);
-            HomePage Home = new HomePage("Home page");
+            HomePage Home = new HomePage();
             Dictionary<string, string> TestData = ParseJSON.GetDataFile<Dictionary<string, string>>(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\AlertData.json");
-            AlertsPage Alerts = new AlertsPage("Alert Page");
+            AlertsPage Alerts = new AlertsPage();
             DriverUtil.GoToPage(Config["MainPageUrl"]);
             Assert.IsTrue(Home.IsPageOpened(), "Home page not open");
             Home.ClickAlertsLink();
-            Assert.IsTrue(Alerts.ChooseAlertCategory(), "Alert not selected");
+            Assert.IsTrue(Alerts.IsAlertCategoryOpen(), "Alert not selected");
             Assert.IsTrue(Alerts.IsDefaultAlertOpened(), "Default alert not open");
             Assert.IsTrue(Alerts.IsAlertTextMatch(TestData["DefaultAlert"]), "Default alert text does not match test data");
             Assert.IsTrue(Alerts.ConfirmAlert().IsAlertClosed(), "Alert not closed");
@@ -39,9 +39,9 @@ namespace Task3
         public void TestCase2()
         {
             LoggerUtil.MakeLog(TestCaseMark + "Test Case 2 start" + TestCaseMark);
-            HomePage Home = new HomePage("Home page");
-            NestedFramesPage NestedFrames = new NestedFramesPage("Nested frames Page");
-            FramesPage FramePage = new FramesPage("Frames Page");
+            HomePage Home = new HomePage();
+            NestedFramesPage NestedFrames = new NestedFramesPage();
+            FramesPage FramePage = new FramesPage();
             DriverUtil.GoToPage(Config["MainPageUrl"]);
             Dictionary<string, string> TestData = ParseJSON.GetDataFile<Dictionary<string, string>>(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\AlertData.json");
             Assert.IsTrue(Home.IsPageOpened(), "Home page not open");
@@ -61,8 +61,8 @@ namespace Task3
         {
             LoggerUtil.MakeLog(TestCaseMark + "Test Case 3 start" + TestCaseMark);
             List<RegistrationModel> TestData = ParseJSON.GetDataFile<List<RegistrationModel>>(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\WebTablesData.json");
-            HomePage Home = new HomePage("Home page");
-            WebTabelsPage webTabels = new WebTabelsPage("Web tables page");
+            HomePage Home = new HomePage();
+            WebTabelsPage webTabels = new WebTabelsPage();
             DriverUtil.GoToPage(Config["MainPageUrl"]);
             Assert.IsTrue(Home.IsPageOpened(), "Home page not open");
             Home.CleckElementsLink();
@@ -77,9 +77,9 @@ namespace Task3
         public void TestCase4()
         {
             LoggerUtil.MakeLog(TestCaseMark + "Test Case 4 start" + TestCaseMark);
-            HomePage Home = new HomePage("Home page");
-            BrowserWindowsPage browserWindows = new BrowserWindowsPage("Browser windows page");
-            LinksPage Links = new LinksPage("Links page");
+            HomePage Home = new HomePage();
+            BrowserWindowsPage browserWindows = new BrowserWindowsPage();
+            LinksPage Links = new LinksPage();
             Dictionary<string, string> TestData = ParseJSON.GetDataFile<Dictionary<string, string>>(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\BrowserWindowsData.json");
             DriverUtil.GoToPage(Config["MainPageUrl"]);
             Assert.IsTrue(Home.IsPageOpened(), "Home page not open");

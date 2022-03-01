@@ -10,6 +10,7 @@ namespace Task3.Pages
     public class AlertsPage : BasePage
     {
         private static Label Def = new Label(By.XPath("//div[contains(@class,'main-header') and contains(.,'Alerts')"), "Default element");
+        public static string name = "Alert Page";
         private Button AlertCategory = new Button(By.XPath("//div[contains(@class,'element-list')]//*[contains(.,'Alerts') and contains(@class,'btn')]"), "Alert button in category submenu");
         private Label AlertForm = new Label(By.XPath("//div[@id='javascriptAlertsWrapper']"), "Alert form");
         private Button AlertButton = new Button(By.XPath("//button[@id='alertButton']"), "Default alert button");
@@ -18,11 +19,11 @@ namespace Task3.Pages
         private Label ConfirmFrom = new Label(By.XPath("//span[@id='confirmResult']"), "Confirm result");
         private Label PromptFrom = new Label(By.XPath("//span[@id='promptResult']"), "Prompt result");
 
-        public AlertsPage(string name) : base(name, Def)
+        public AlertsPage() : base(name, Def)
         {
         }
 
-        public bool ChooseAlertCategory()
+        public bool IsAlertCategoryOpen()
         {
             AlertCategory.Click();
             return AlertForm.IsVisible();
@@ -33,7 +34,7 @@ namespace Task3.Pages
             try
             {
                 AlertButton.Click();
-                IAlert alert = WaiterUtil.WaitAlert();
+                WaiterUtil.WaitAlert();
                 return true;
             }
             catch (WebDriverTimeoutException ex)
@@ -46,7 +47,7 @@ namespace Task3.Pages
             try
             {
                 ConfirmAlertButton.Click();
-                IAlert alert = WaiterUtil.WaitAlert();
+                WaiterUtil.WaitAlert();
                 return true;
             }
             catch (WebDriverTimeoutException ex)
@@ -59,7 +60,7 @@ namespace Task3.Pages
             try
             {
                 PromtAlertButton.Click();
-                IAlert alert = WaiterUtil.WaitAlert();
+                WaiterUtil.WaitAlert();
                 return true;
             }
             catch (WebDriverTimeoutException ex)
@@ -70,24 +71,19 @@ namespace Task3.Pages
 
         public string RandomFillAlertField()
         {
-            IAlert alert = DriverUtil.SwitchToAlert();
-            string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            int lenght = RandomNumberGenerator.GetInt32(0, chars.Length);
-            string text= new string(Enumerable.Repeat(chars, lenght).Select(s => s[RandomNumberGenerator.GetInt32(0, chars.Length)]).ToArray()); 
-            alert.SendKeys(text);
+            string text = TextGeneratorUtil.GenerteText();
+            AlertUtil.SendKeys(text);
             return text;
         }
 
         public bool IsAlertTextMatch(string text)
-        {
-            IAlert alert = DriverUtil.SwitchToAlert();
-            return alert.Text == text;
+        {            
+            return AlertUtil.GetText() == text;
         }
 
         public AlertsPage ConfirmAlert()
         {
-            IAlert alert = DriverUtil.SwitchToAlert();
-            alert.Accept();
+            AlertUtil.Confirm();
             return this;
         }
 

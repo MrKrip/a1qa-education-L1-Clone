@@ -7,6 +7,7 @@ namespace Task3.Pages
     public class WebTabelsPage : BasePage
     {
         private static Label Def = new Label(By.XPath("//div[contains(@class,'main-header') and text()='Web Tables']"), "Default element");
+        public static string name = "Web Tabels Page";
         private Button WebTablesCategory = new Button(By.XPath("//div[contains(@class,'element-list')]//*[span[text()='Web Tables'] and contains(@class,'btn')]"), "Web tables button in category submenu");
         private Button Add = new Button(By.XPath("//button[@id='addNewRecordButton']"), "Add button");
         private Label RegistrationForm = new Label(By.XPath("//div[contains(@class,'modal-content')]"), "Registration form");
@@ -18,7 +19,7 @@ namespace Task3.Pages
         private TextField Department = new TextField(By.XPath("//input[@id='department']"), "Department text field");
         private Button Submit = new Button(By.XPath("//button[@id='submit']"), "Submit button");
 
-        public WebTabelsPage(string name) : base(name, Def)
+        public WebTabelsPage() : base(name, Def)
         {
         }
 

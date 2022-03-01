@@ -7,11 +7,12 @@ namespace Task3.Pages
     public class NestedFramesPage : BasePage
     {
         private static Label Def = new Label(By.XPath("//div[contains(@class,'main-header') and text()='Nested Frames']"), "Default element");
+        public static string name = "Nested Frames Page";
         private Button NestedFrameCategory = new Button(By.XPath("//div[contains(@class,'element-list')]//*[contains(.,'Nested Frames') and contains(@class,'btn')]"), "Nested frames button in category submenu");
         private Label ParentFrameText = new Label(By.XPath("//body"), "Parent frame text");
         private Label ChildFrameText = new Label(By.XPath("//p"), "Child frame text");
 
-        public NestedFramesPage(string name) : base(name, Def)
+        public NestedFramesPage() : base(name, Def)
         {
         }
 
@@ -20,7 +21,6 @@ namespace Task3.Pages
             NestedFrameCategory.Click();
             return this;
         }
-
 
 
         public (bool, bool) IsFramesCorrect(string parent, string child)
@@ -32,7 +32,6 @@ namespace Task3.Pages
             DriverUtil.SwitchToDefault();
             return (parent == Parent, Child == child);
         }
-
         
     }
 }
