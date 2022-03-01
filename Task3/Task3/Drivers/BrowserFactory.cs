@@ -14,13 +14,13 @@ namespace Task3.Drivers
 
         public static IWebDriver GetInstance()
         {           
-            switch (Config.browserName)
+            switch (ParseJSON.GetConfigFile(ConfigClass.ConfigPath)["BrowserName"].ToLower())
             {
-                case "Firefox":
+                case "firefox":
                     {
                         return Firefox.GetInstance();
                     }
-                case "Chrome":
+                case "chrome":
                     {
                         return Chrome.GetInstance();
                     }
@@ -33,13 +33,13 @@ namespace Task3.Drivers
 
         public static void ResetInstance()
         {
-            switch (Config.browserName)
+            switch (ParseJSON.GetConfigFile(ConfigClass.ConfigPath)["BrowserName"].ToLower())
             {
-                case "Firefox":
+                case "firefox":
                     {
                         Firefox.ResetInstance();
                     }break;
-                case "Chrome":
+                case "chrome":
                     {
                         Chrome.ResetInstance();
                     }break;

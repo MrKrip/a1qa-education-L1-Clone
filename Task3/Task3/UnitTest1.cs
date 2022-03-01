@@ -16,9 +16,8 @@ namespace Task3
         {            
             LoggerUtil.MakeLog(TestCaseMark+"Test Case 1 start"+TestCaseMark);
             HomePage Home = new HomePage();
-            Dictionary<string, string> TestData = ParseJSON.GetDataFile<Dictionary<string, string>>(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\AlertData.json");
+            Dictionary<string, string> TestData = ParseJSON.GetDataFile<Dictionary<string, string>>(ConfigClass.AlertData);
             AlertsPage Alerts = new AlertsPage();
-            DriverUtil.GoToPage(Config["MainPageUrl"]);
             Assert.IsTrue(Home.IsPageOpened(), "Home page not open");
             Home.ClickAlertsLink();
             Assert.IsTrue(Alerts.IsAlertCategoryOpen(), "Alert not selected");
@@ -42,8 +41,7 @@ namespace Task3
             HomePage Home = new HomePage();
             NestedFramesPage NestedFrames = new NestedFramesPage();
             FramesPage FramePage = new FramesPage();
-            DriverUtil.GoToPage(Config["MainPageUrl"]);
-            Dictionary<string, string> TestData = ParseJSON.GetDataFile<Dictionary<string, string>>(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\AlertData.json");
+            Dictionary<string, string> TestData = ParseJSON.GetDataFile<Dictionary<string, string>>(ConfigClass.AlertData);
             Assert.IsTrue(Home.IsPageOpened(), "Home page not open");
             Home.ClickAlertsLink();
             NestedFrames.ChooseNestedFrameCategory();
@@ -57,20 +55,20 @@ namespace Task3
         }
 
         [Test]
-        public void TestCase3()
+        [TestCase(0)]
+        public void TestCase3(int id)
         {
             LoggerUtil.MakeLog(TestCaseMark + "Test Case 3 start" + TestCaseMark);
-            List<RegistrationModel> TestData = ParseJSON.GetDataFile<List<RegistrationModel>>(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\WebTablesData.json");
+            List<RegistrationModel> TestData = ParseJSON.GetDataFile<List<RegistrationModel>>(ConfigClass.WebTablesData);
             HomePage Home = new HomePage();
             WebTabelsPage webTabels = new WebTabelsPage();
-            DriverUtil.GoToPage(Config["MainPageUrl"]);
             Assert.IsTrue(Home.IsPageOpened(), "Home page not open");
             Home.CleckElementsLink();
             Assert.IsTrue(webTabels.ChooseWebTablesCategory().IsPageOpened(), "Web tables page not open");
             Assert.IsTrue(webTabels.ClickAddButton().IsRegistrationFromOpened(), "Registration form not open");
-            webTabels.FillRegistrationForm(TestData[0]).SubmitRegistrationForm();
-            Assert.IsTrue(webTabels.IsRecordAdded(TestData[0]), "New record not added");
-            Assert.IsFalse(webTabels.DeleteRecord(TestData[0]).IsRecordAdded(TestData[0]), "Record is not deleted");
+            webTabels.FillRegistrationForm(TestData[id]).SubmitRegistrationForm();
+            Assert.IsTrue(webTabels.IsRecordAdded(TestData[id]), "New record not added");
+            Assert.IsFalse(webTabels.DeleteRecord(TestData[id]).IsRecordAdded(TestData[id]), "Record is not deleted");
         }
 
         [Test]
@@ -80,8 +78,7 @@ namespace Task3
             HomePage Home = new HomePage();
             BrowserWindowsPage browserWindows = new BrowserWindowsPage();
             LinksPage Links = new LinksPage();
-            Dictionary<string, string> TestData = ParseJSON.GetDataFile<Dictionary<string, string>>(Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName + @"\BrowserWindowsData.json");
-            DriverUtil.GoToPage(Config["MainPageUrl"]);
+            Dictionary<string, string> TestData = ParseJSON.GetDataFile<Dictionary<string, string>>(ConfigClass.BrowserWindowsData);
             Assert.IsTrue(Home.IsPageOpened(), "Home page not open");
             Home.ClickAlertsLink();
             browserWindows.ChooseWindowsCategory();
