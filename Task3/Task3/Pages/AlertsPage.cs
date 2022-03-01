@@ -9,8 +9,8 @@ namespace Task3.Pages
 {
     public class AlertsPage : BasePage
     {
-        private static Label Def = new Label(By.XPath("//div[contains(@class,'main-header') and contains(.,'Alerts')"), "Default element");
-        public static string name = "Alert Page";
+        private static Label Def = new Label(By.XPath("//div[contains(@class,'main-header') and contains(.,'Alerts')]"), "Default element");
+        private static string name = "Alert Page";
         private Button AlertCategory = new Button(By.XPath("//div[contains(@class,'element-list')]//*[contains(.,'Alerts') and contains(@class,'btn')]"), "Alert button in category submenu");
         private Label AlertForm = new Label(By.XPath("//div[@id='javascriptAlertsWrapper']"), "Alert form");
         private Button AlertButton = new Button(By.XPath("//button[@id='alertButton']"), "Default alert button");

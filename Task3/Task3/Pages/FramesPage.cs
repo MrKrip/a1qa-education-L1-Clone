@@ -7,7 +7,7 @@ namespace Task3.Pages
     public class FramesPage:BasePage
     {
         private static Label Def = new Label(By.XPath("//div[contains(@class,'main-header') and text()='Frames']"), "Default element");
-        public static string name = "Frames Page";
+        private static string name = "Frames Page";
         private Button FrameCategory = new Button(By.XPath("//div[contains(@class,'element-list')]//*[span[text()='Frames'] and contains(@class,'btn')]"), "Frames button in category submenu");
         private Label FrameText = new Label(By.XPath("//*[@id='sampleHeading']"), "Text from frame");
 

@@ -13,8 +13,8 @@ namespace Task3
     {
         [Test]
         public void TestCase1()
-        {            
-            LoggerUtil.MakeLog(TestCaseMark+"Test Case 1 start"+TestCaseMark);
+        {
+            LoggerUtil.MakeLog(TestCaseMark + "Test Case 1 start" + TestCaseMark);
             HomePage Home = new HomePage();
             Dictionary<string, string> TestData = ParseJSON.GetDataFile<Dictionary<string, string>>(ConfigClass.AlertData);
             AlertsPage Alerts = new AlertsPage();
@@ -63,7 +63,7 @@ namespace Task3
             HomePage Home = new HomePage();
             WebTabelsPage webTabels = new WebTabelsPage();
             Assert.IsTrue(Home.IsPageOpened(), "Home page not open");
-            Home.CleckElementsLink();
+            Home.ClickElementsLink();
             Assert.IsTrue(webTabels.ChooseWebTablesCategory().IsPageOpened(), "Web tables page not open");
             Assert.IsTrue(webTabels.ClickAddButton().IsRegistrationFromOpened(), "Registration form not open");
             webTabels.FillRegistrationForm(TestData[id]).SubmitRegistrationForm();
@@ -93,6 +93,21 @@ namespace Task3
             Links.ClickHomeLink();
             Assert.IsTrue(Home.IsPageOpened(), "Home page not open");
             Assert.IsTrue(Links.ReturnToLinksPage().IsPageOpened(), "Links page not open");
+        }
+
+        [Test]
+        public void TestCase6()
+        {
+            LoggerUtil.MakeLog(TestCaseMark + "Test Case 6 start" + TestCaseMark);
+            HomePage Home = new HomePage();
+            DatePickerPage datePicker = new DatePickerPage();
+            Assert.IsTrue(Home.IsPageOpened(), "Home page not open");
+            Home.ClickWidgetsButton();
+            (bool SelectDate, bool DateAndTime) = datePicker.ClickDatePickerCategory().IsDateCorrect();
+            Assert.IsTrue(SelectDate, "Select date is not matched with date now");
+            Assert.IsTrue(DateAndTime, "Date and time not matched with date and time now");
+            string value = datePicker.FindDate();
+            Assert.IsTrue(datePicker.IsFabruary29DateCorrect(value),"Select date is not correct");
         }
     }
 }
