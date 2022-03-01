@@ -86,10 +86,11 @@ namespace Task3
             Home.ClickAlertsLink();
             browserWindows.ChooseWindowsCategory();
             Assert.IsTrue(browserWindows.IsPageOpened(), "Browser window page not open");
-            (bool UrlCheck, bool TabTextCheck) = browserWindows.ClickNewTabButton().IsTabOpened(TestData["Url"], TestData["NewTabText"]);
-            Assert.IsTrue(UrlCheck, "Url does not match test data ");
+            (bool TabOpen, bool TabTextCheck) = browserWindows.ClickNewTabButton().IsTabOpened(TestData["NewTabText"]);
+            Assert.IsTrue(TabOpen, "New tab not open");
             Assert.IsTrue(TabTextCheck, "Tab text not match test data ");
-            browserWindows.CloseTab();
+            DriverUtil.CloseTab();
+            DriverUtil.SwitchToWindow(0);
             Assert.IsTrue(browserWindows.IsPageOpened(), "Browser window page not open");
             Assert.IsTrue(Links.ChooseLinksCategory().IsPageOpened(), "Links page not open");
             Links.ClickHomeLink();

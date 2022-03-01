@@ -29,22 +29,10 @@ namespace Task3.Pages
             return this;
         }
 
-        public (bool, bool) IsTabOpened(string url, string text)
+        public (bool, bool) IsTabOpened(string text)
         {
-            DriverUtil.SwitchToWindow(1);
-            string Url = DriverUtil.GetUrl();
-            if (!Url.Contains(url))
-            {
-                return (false, false);
-            }
-            return (Url.Contains(url), text == NewTabText.GetText());
-        }
-
-        public BrowserWindowsPage CloseTab()
-        {
-            DriverUtil.CloseTab();
-            DriverUtil.SwitchToWindow(0);
-            return this;
+            DriverUtil.SwitchToWindow(1);          
+            return (NewTabText.IsVisible(), text == NewTabText.GetText());
         }
     }
 }
