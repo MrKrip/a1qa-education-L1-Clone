@@ -6,10 +6,10 @@ namespace Task3.Pages
 {
     public class BrowserWindowsPage : BasePage
     {
-        private static ContentForm Def = new ContentForm(By.XPath("//div[contains(@class,'main-header') and text()='Browser Windows']"), "Default element");
+        private static Label Def = new Label(By.XPath("//div[contains(@class,'main-header') and text()='Browser Windows']"), "Default element");
         private Button WindowsCategory = new Button(By.XPath("//div[contains(@class,'element-list')]//*[span[text()='Browser Windows'] and contains(@class,'btn')]"), "Browser Windows button in category submenu");
         private Button NewTab = new Button(By.XPath("//button[@id='tabButton']"), "New tab button");
-        private ContentForm NewTabText = new ContentForm(By.XPath("//*[@id='sampleHeading']"), "Text on new tab");
+        private Label NewTabText = new Label(By.XPath("//*[@id='sampleHeading']"), "Text on new tab");
 
         public BrowserWindowsPage(string name) : base(name, Def)
         {

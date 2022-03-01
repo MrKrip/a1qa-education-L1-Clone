@@ -6,7 +6,7 @@ namespace Task3.Pages
 {
     public class LinksPage : BasePage
     {
-        private static ContentForm Def = new ContentForm(By.XPath("//div[contains(@class,'main-header') and text()='Links']"), "Default element");
+        private static Label Def = new Label(By.XPath("//div[contains(@class,'main-header') and text()='Links']"), "Default element");
         private Button ElementsSubMenu = new Button(By.XPath("//div[contains(@class,'header-wrapper') and *[text()='Elements']]"), "Element submenu button");
         private Button LinksCategory = new Button(By.XPath("//div[contains(@class,'element-list')]//*[span[text()='Links'] and contains(@class,'btn')]"), "Links button in category submenu");
         private Button HomeLink = new Button(By.XPath("//*[@id='simpleLink']"),"Home link");

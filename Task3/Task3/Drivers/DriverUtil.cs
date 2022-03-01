@@ -40,6 +40,12 @@ namespace Task3.Drivers
             BrowserFactory.GetInstance().SwitchTo().Frame(el);
         }
 
+        public static void SwitchToFrame(By el)
+        {
+            LoggerUtil.MakeLog($"Switching to {el.ToString()}");
+            BrowserFactory.GetInstance().SwitchTo().Frame(WaiterUtil.WaitFindElement(el));
+        }
+
         public static void SwitchToWindow(int id)
         {
             LoggerUtil.MakeLog($"Switching to {id} window");
