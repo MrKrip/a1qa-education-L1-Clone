@@ -1,0 +1,110 @@
+**********Test Case 1 start**********
+Finding an Default element
+Click on Alerts, Frame & Windows button
+Get Alerts, Frame & Windows button
+Click on Alert button in category submenu
+Get Alert button in category submenu
+Finding an Alert form
+Click on Default alert button
+Get Default alert button
+Switching to alert
+Switching to alert
+Switching to alert
+Click on Confirm alert button
+Get Confirm alert button
+Switching to alert
+Switching to alert
+Switching to alert
+Get text from Confirm result
+Get Confirm result
+Click on Promt alert button
+Get Promt alert button
+Switching to alert
+Switching to alert
+Switching to alert
+Get text from Prompt result
+Get Prompt result
+**********Test Case 2 start**********
+Finding an Default element
+Click on Alerts, Frame & Windows button
+Get Alerts, Frame & Windows button
+Click on Nested frames button in category submenu
+Get Nested frames button in category submenu
+Finding an Default element
+Switching to Parent frame
+Get Parent frame
+Switching to frame Element (id = bfb3ce66-4207-4d40-8da3-bb8d8b6f6353)
+Get text from Parent frame text
+Get Parent frame text
+Get attribute from Child frame
+Get Child frame
+Switching to default
+Click on Frames button in category submenu
+Get Frames button in category submenu
+Finding an Default element
+Switching to Parent frame
+Get Parent frame
+Switching to frame Element (id = 0b561426-f866-4d06-b150-2daf9ee7f579)
+Get text from Text from frame
+Get Text from frame
+Switching to default
+Switching to Second frame
+Get Second frame
+Switching to frame Element (id = 2b6afe8e-8e99-41d9-98f9-720609113919)
+Get text from Text from frame
+Get Text from frame
+**********Test Case 3 start**********
+Finding an Default element
+Click on Element button
+Get Element button
+Click on Web tables button in category submenu
+Get Web tables button in category submenu
+Finding an Default element
+Click on Add button
+Get Add button
+Finding an Registration form
+Sending keys to First name text field
+Get First name text field
+Sending keys to Last name text field
+Get Last name text field
+Sending keys to Email text field
+Get Email text field
+Sending keys to Age text field
+Get Age text field
+Sending keys to Salary text field
+Get Salary text field
+Sending keys to Department text field
+Get Department text field
+Click on Submit button
+Get Submit button
+Finding an Added registration form
+Click on Delete button
+Get Delete button
+Finding an Added registration form
+**********Test Case 4 start**********
+Finding an Default element
+Click on Alerts, Frame & Windows button
+Get Alerts, Frame & Windows button
+Click on Browser Windows button in category submenu
+Get Browser Windows button in category submenu
+Finding an Default element
+Click on New tab button
+Get New tab button
+Switching to 1 window
+Getting current url tab
+Get text from Text on new tab
+Get Text on new tab
+Closing current tab
+Switching to 0 window
+Finding an Default element
+Click on Element submenu button
+Get Element submenu button
+Click on Links button in category submenu
+Get Links button in category submenu
+Finding an Default element
+Click on Home link
+Get Home link
+Switching to 1 window
+Finding an Default element
+Switching to 0 window
+Finding an Default element
