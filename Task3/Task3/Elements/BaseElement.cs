@@ -5,20 +5,20 @@ namespace Task3.Elements
 {
     public abstract class BaseElement
     {
-        protected string Xpath;
+        protected By Locator;
         protected string Name;
 
 
-        public BaseElement(string xpath, string name)
+        public BaseElement(By locator, string name)
         {
-            Xpath = xpath;
+            Locator = locator;
             Name = name;
         }
 
         protected IWebElement GetElement()
         {
             LoggerUtil.MakeLog($"Get {Name}");
-            return WaiterUtil.WaitClickible(By.XPath(Xpath));
+            return WaiterUtil.WaitClickible(Locator);
         }
 
         public string GetText()
@@ -42,7 +42,7 @@ namespace Task3.Elements
         public bool IsVisible()
         {
             LoggerUtil.MakeLog($"Finding an {Name}");
-            return WaiterUtil.WaitFindElements(By.XPath(Xpath)).Count > 0;
+            return WaiterUtil.WaitFindElements(Locator).Count > 0;
         }
     }
 }

@@ -1,10 +1,11 @@
-﻿using Task3.Util;
+﻿using OpenQA.Selenium;
+using Task3.Util;
 
 namespace Task3.Elements
 {
     public class TextField : BaseElement
     {
-        public TextField(string xpath, string name) : base(xpath, name)
+        public TextField(By locator, string name) : base(locator, name)
         { }
 
         public void SendKeys(string content)

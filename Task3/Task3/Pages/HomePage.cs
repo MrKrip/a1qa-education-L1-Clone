@@ -1,12 +1,13 @@
-﻿using Task3.Elements;
+﻿using OpenQA.Selenium;
+using Task3.Elements;
 
 namespace Task3.Pages
 {
     public class HomePage : BasePage
     {
-        private static Button Def = new Button("//div[contains(@class,'card')]", "Default element");
-        private Button Alerts = new Button("//div[contains(@class,'top-card') and div[contains(.,'Alerts')]]", "Alerts, Frame & Windows button");
-        private Button Elements = new Button("//div[contains(@class,'top-card') and div[contains(.,'Elements')]]", "Element button");
+        private static Button Def = new Button(By.XPath("//div[contains(@class,'card')]"), "Default element");
+        private Button Alerts = new Button(By.XPath("//div[contains(@class,'top-card') and div[contains(.,'Alerts')]]"), "Alerts, Frame & Windows button");
+        private Button Elements = new Button(By.XPath("//div[contains(@class,'top-card') and div[contains(.,'Elements')]]"), "Element button");
 
         public HomePage(string name) : base(name, Def)
         {

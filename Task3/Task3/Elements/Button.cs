@@ -1,8 +1,10 @@
-﻿namespace Task3.Elements
+﻿using OpenQA.Selenium;
+
+namespace Task3.Elements
 {
     public class Button : BaseElement
     {
-        public Button(string xpath, string name) : base(xpath, name)
+        public Button(By locator, string name) : base(locator, name)
         { }
     }
 }

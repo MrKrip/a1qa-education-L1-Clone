@@ -1,21 +1,22 @@
-﻿using Task3.Elements;
+﻿using OpenQA.Selenium;
+using Task3.Elements;
 using Task3.Models;
 
 namespace Task3.Pages
 {
     public class WebTabelsPage : BasePage
     {
-        private static ContentForm Def = new ContentForm("//div[contains(@class,'main-header') and text()='Web Tables']", "Default element");
-        private Button WebTablesCategory = new Button("//div[contains(@class,'element-list')]//*[span[text()='Web Tables'] and contains(@class,'btn')]", "Web tables button in category submenu");
-        private Button Add = new Button("//button[@id='addNewRecordButton']", "Add button");
-        private ContentForm RegistrationForm = new ContentForm("//div[contains(@class,'modal-content')]", "Registration form");
-        private TextField FirstName = new TextField("//input[@id='firstName']","First name text field");
-        private TextField LastName = new TextField("//input[@id='lastName']", "Last name text field");
-        private TextField Email = new TextField("//input[@id='userEmail']", "Email text field");
-        private TextField Age = new TextField("//input[@id='age']", "Age text field");
-        private TextField Salary = new TextField("//input[@id='salary']", "Salary text field");
-        private TextField Department = new TextField("//input[@id='department']", "Department text field");
-        private Button Submit = new Button("//button[@id='submit']", "Submit button");
+        private static ContentForm Def = new ContentForm(By.XPath("//div[contains(@class,'main-header') and text()='Web Tables']"), "Default element");
+        private Button WebTablesCategory = new Button(By.XPath("//div[contains(@class,'element-list')]//*[span[text()='Web Tables'] and contains(@class,'btn')]"), "Web tables button in category submenu");
+        private Button Add = new Button(By.XPath("//button[@id='addNewRecordButton']"), "Add button");
+        private ContentForm RegistrationForm = new ContentForm(By.XPath("//div[contains(@class,'modal-content')]"), "Registration form");
+        private TextField FirstName = new TextField(By.XPath("//input[@id='firstName']"),"First name text field");
+        private TextField LastName = new TextField(By.XPath("//input[@id='lastName']"), "Last name text field");
+        private TextField Email = new TextField(By.XPath("//input[@id='userEmail']"), "Email text field");
+        private TextField Age = new TextField(By.XPath("//input[@id='age']"), "Age text field");
+        private TextField Salary = new TextField(By.XPath("//input[@id='salary']"), "Salary text field");
+        private TextField Department = new TextField(By.XPath("//input[@id='department']"), "Department text field");
+        private Button Submit = new Button(By.XPath("//button[@id='submit']"), "Submit button");
 
         public WebTabelsPage(string name) : base(name, Def)
         {

@@ -1,8 +1,10 @@
-﻿namespace Task3.Elements
+﻿using OpenQA.Selenium;
+
+namespace Task3.Elements
 {
     public class ContentForm : BaseElement
     {
-        public ContentForm(string xpath, string name) : base(xpath, name)
+        public ContentForm(By locator, string name) : base(locator, name)
         { }
     }
 }

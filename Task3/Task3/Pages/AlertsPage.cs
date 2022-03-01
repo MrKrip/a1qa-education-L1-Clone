@@ -9,14 +9,14 @@ namespace Task3.Pages
 {
     public class AlertsPage : BasePage
     {
-        private static ContentForm Def = new ContentForm("//div[contains(@class,'main-header') and contains(.,'Alerts')]", "Default element");
-        private Button AlertCategory = new Button("//div[contains(@class,'element-list')]//*[contains(.,'Alerts') and contains(@class,'btn')]", "Alert button in category submenu");
-        private ContentForm AlertForm = new ContentForm("//div[@id='javascriptAlertsWrapper']", "Alert form");
-        private Button AlertButton = new Button("//button[@id='alertButton']", "Default alert button");
-        private Button ConfirmAlertButton = new Button("//button[@id='confirmButton']", "Confirm alert button");
-        private Button PromtAlertButton = new Button("//button[@id='promtButton']", "Promt alert button");
-        private ContentForm ConfirmFrom = new ContentForm("//span[@id='confirmResult']", "Confirm result");
-        private ContentForm PromptFrom = new ContentForm("//span[@id='promptResult']", "Prompt result");
+        private static ContentForm Def = new ContentForm(By.XPath("//div[contains(@class,'main-header') and contains(.,'Alerts')"), "Default element");
+        private Button AlertCategory = new Button(By.XPath("//div[contains(@class,'element-list')]//*[contains(.,'Alerts') and contains(@class,'btn')]"), "Alert button in category submenu");
+        private ContentForm AlertForm = new ContentForm(By.XPath("//div[@id='javascriptAlertsWrapper']"), "Alert form");
+        private Button AlertButton = new Button(By.XPath("//button[@id='alertButton']"), "Default alert button");
+        private Button ConfirmAlertButton = new Button(By.XPath("//button[@id='confirmButton']"), "Confirm alert button");
+        private Button PromtAlertButton = new Button(By.XPath("//button[@id='promtButton']"), "Promt alert button");
+        private ContentForm ConfirmFrom = new ContentForm(By.XPath("//span[@id='confirmResult']"), "Confirm result");
+        private ContentForm PromptFrom = new ContentForm(By.XPath("//span[@id='promptResult']"), "Prompt result");
 
         public AlertsPage(string name) : base(name, Def)
         {

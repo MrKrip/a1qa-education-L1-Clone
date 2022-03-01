@@ -1,15 +1,16 @@
-﻿using Task3.Drivers;
+﻿using OpenQA.Selenium;
+using Task3.Drivers;
 using Task3.Elements;
 
 namespace Task3.Pages
 {
     public class NestedFramesPage : BasePage
     {
-        private static ContentForm Def = new ContentForm("//div[contains(@class,'main-header') and text()='Nested Frames']", "Default element");
-        private Button NestedFrameCategory = new Button("//div[contains(@class,'element-list')]//*[contains(.,'Nested Frames') and contains(@class,'btn')]", "Nested frames button in category submenu");
-        private Frame ParentFrame = new Frame("//iframe[@id='frame1']", "Parent frame");
-        private ContentForm ParentFrameText = new ContentForm("//body", "Parent frame text");
-        private Frame ChildFrame = new Frame("//iframe[@srcdoc]", "Child frame");
+        private static ContentForm Def = new ContentForm(By.XPath("//div[contains(@class,'main-header') and text()='Nested Frames']"), "Default element");
+        private Button NestedFrameCategory = new Button(By.XPath("//div[contains(@class,'element-list')]//*[contains(.,'Nested Frames') and contains(@class,'btn')]"), "Nested frames button in category submenu");
+        private Frame ParentFrame = new Frame(By.XPath("//iframe[@id='frame1']"), "Parent frame");
+        private ContentForm ParentFrameText = new ContentForm(By.XPath("//body"), "Parent frame text");
+        private Frame ChildFrame = new Frame(By.XPath("//iframe[@srcdoc]"), "Child frame");
 
         public NestedFramesPage(string name) : base(name, Def)
         {
