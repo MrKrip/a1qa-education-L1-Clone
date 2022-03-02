@@ -13,11 +13,11 @@ namespace Task3.Drivers
         {
             if (Instance == null)
             {
-                new DriverManager().SetUpDriver(new ChromeConfig());
+                new DriverManager().SetUpDriver(new ChromeConfig(), "98.0.4758.102"); //Версию браузера вставил так как драйвер обновился а сам браузер до 99 версии у меня обновляться не хочет
                 var options = new ChromeOptions();
                 options.AddArgument("--start-maximized");
                 options.AddArgument("--incognito");
-                options.AddUserProfilePreference("download.default_directory",ConfigClass.DownloadPath);
+                options.AddUserProfilePreference("download.default_directory", ConfigClass.DownloadPath);
                 Instance = new ChromeDriver(options);
             }
             return Instance;

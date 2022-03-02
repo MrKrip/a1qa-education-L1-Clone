@@ -55,20 +55,28 @@ namespace Task3
         }
 
         [Test]
-        [TestCase(0)]
-        public void TestCase3(int id)
+        [TestCaseSource("WebTablesData")]
+        public void TestCase3(RegistrationModel TestData)
         {
             LoggerUtil.MakeLog(TestCaseMark + "Test Case 3 start" + TestCaseMark);
-            List<RegistrationModel> TestData = ParseJSON.GetDataFile<List<RegistrationModel>>(ConfigClass.WebTablesData);
             HomePage Home = new HomePage();
             WebTabelsPage webTabels = new WebTabelsPage();
             Assert.IsTrue(Home.IsPageOpened(), "Home page not open");
             Home.ClickElementsLink();
             Assert.IsTrue(webTabels.ChooseWebTablesCategory().IsPageOpened(), "Web tables page not open");
             Assert.IsTrue(webTabels.ClickAddButton().IsRegistrationFromOpened(), "Registration form not open");
-            webTabels.FillRegistrationForm(TestData[id]).SubmitRegistrationForm();
-            Assert.IsTrue(webTabels.IsRecordAdded(TestData[id]), "New record not added");
-            Assert.IsFalse(webTabels.DeleteRecord(TestData[id]).IsRecordAdded(TestData[id]), "Record is not deleted");
+            webTabels.FillRegistrationForm(TestData).SubmitRegistrationForm();
+            Assert.IsTrue(webTabels.IsRecordAdded(TestData), "New record not added");
+            Assert.IsFalse(webTabels.DeleteRecord(TestData).IsRecordAdded(TestData), "Record is not deleted");
+        }
+
+        public static IEnumerable<RegistrationModel> WebTablesData()
+        {
+            var TestData = ParseJSON.GetDataFile<List<RegistrationModel>>(ConfigClass.WebTablesData);
+            foreach(var TestUnit in TestData)
+            {
+                yield return TestUnit;
+            }
         }
 
         [Test]
@@ -119,9 +127,9 @@ namespace Task3
             UploadDownloadPage uploadDownload = new UploadDownloadPage();
             Assert.IsTrue(Home.IsPageOpened(), "Home page not open");
             Home.ClickElementsLink();
-            Assert.IsTrue(uploadDownload.ClickUplDownCategory().IsPageOpened(),"Upload and Download page not open");
-            Assert.IsTrue(uploadDownload.IsFileDownloaded(ConfigClass.DownloadPath+$@"\{filename}"),"File was not download");
-            Assert.IsTrue(uploadDownload.UploadFile(ConfigClass.DownloadPath + $@"\{filename}").IsfileUploaded(filename),"File was not upload");
+            Assert.IsTrue(uploadDownload.ClickUplDownCategory().IsPageOpened(), "Upload and Download page not open");
+            Assert.IsTrue(uploadDownload.IsFileDownloaded(ConfigClass.DownloadPath + $@"\{filename}"), "File was not download");
+            Assert.IsTrue(uploadDownload.UploadFile(ConfigClass.DownloadPath + $@"\{filename}").IsfileUploaded(filename), "File was not upload");
         }
     }
 }
