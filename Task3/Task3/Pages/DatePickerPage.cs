@@ -14,8 +14,8 @@ namespace Task3.Pages
         private static Label Def = new Label(By.XPath("//div[contains(@class,'main-header') and text()='Date Picker']"), "Default element");
         private static string name = "Date Picker Page";
         private Button DatePickerCategory = new Button(By.XPath("//div[contains(@class,'element-list')]//*[span[text()='Date Picker'] and contains(@class,'btn')]"), "Browser Windows button in category submenu");
-        private TextField SelectDate = new TextField(By.Id("datePickerMonthYearInput"), "Select date input");
-        private TextField DateAndTime = new TextField(By.Id("dateAndTimePickerInput"), "Date nd time input");
+        private Input SelectDate = new Input(By.Id("datePickerMonthYearInput"), "Select date input");
+        private Input DateAndTime = new Input(By.Id("dateAndTimePickerInput"), "Date nd time input");
         private Select SelectYear = new Select(By.XPath("//select[contains(@class,'react-datepicker__year-select')]"), "Year select");
         private Label February29 = new Label(By.XPath("//div[contains(@aria-label,'February') and text()='29']"), "29 Februry label");
         private string FirstDateTimeFormat;

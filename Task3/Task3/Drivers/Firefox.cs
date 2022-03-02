@@ -17,6 +17,9 @@ namespace Task3.Drivers
                 var options = new FirefoxOptions();
                 options.AddArgument("--start-maximized");
                 options.AddArgument("--incognito");
+                options.SetPreference("browser.download.folderList",2);
+                options.SetPreference("browser.download.dir",ConfigClass.DownloadPath);
+                options.SetPreference("browser.helperApps.neverAsk.saveToDosk","image/jpeg");
                 Instance = new FirefoxDriver(options);
             }
             return Instance;

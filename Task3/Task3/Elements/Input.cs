@@ -3,9 +3,9 @@ using Task3.Util;
 
 namespace Task3.Elements
 {
-    public class TextField : BaseElement
+    public class Input : BaseElement
     {
-        public TextField(By locator, string name) : base(locator, name)
+        public Input(By locator, string name) : base(locator, name)
         { }
 
         public void SendKeys(string content)

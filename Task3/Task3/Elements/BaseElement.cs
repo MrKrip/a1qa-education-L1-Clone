@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
+using Task3.Drivers;
 using Task3.Util;
 
 namespace Task3.Elements
@@ -43,6 +45,12 @@ namespace Task3.Elements
         {
             LoggerUtil.MakeLog($"Finding an {Name}");
             return WaiterUtil.WaitFindElements(Locator).Count > 0;
+        }
+
+        public void MoveToElement()
+        {
+            Actions action = new Actions(BrowserFactory.GetInstance());
+            action.MoveToElement(GetElement()).Perform();
         }
     }
 }

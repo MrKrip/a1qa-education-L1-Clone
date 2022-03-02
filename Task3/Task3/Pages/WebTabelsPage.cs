@@ -11,12 +11,12 @@ namespace Task3.Pages
         private Button WebTablesCategory = new Button(By.XPath("//div[contains(@class,'element-list')]//*[span[text()='Web Tables'] and contains(@class,'btn')]"), "Web tables button in category submenu");
         private Button Add = new Button(By.XPath("//button[@id='addNewRecordButton']"), "Add button");
         private Label RegistrationForm = new Label(By.XPath("//div[contains(@class,'modal-content')]"), "Registration form");
-        private TextField FirstName = new TextField(By.XPath("//input[@id='firstName']"),"First name text field");
-        private TextField LastName = new TextField(By.XPath("//input[@id='lastName']"), "Last name text field");
-        private TextField Email = new TextField(By.XPath("//input[@id='userEmail']"), "Email text field");
-        private TextField Age = new TextField(By.XPath("//input[@id='age']"), "Age text field");
-        private TextField Salary = new TextField(By.XPath("//input[@id='salary']"), "Salary text field");
-        private TextField Department = new TextField(By.XPath("//input[@id='department']"), "Department text field");
+        private Input FirstName = new Input(By.XPath("//input[@id='firstName']"),"First name text field");
+        private Input LastName = new Input(By.XPath("//input[@id='lastName']"), "Last name text field");
+        private Input Email = new Input(By.XPath("//input[@id='userEmail']"), "Email text field");
+        private Input Age = new Input(By.XPath("//input[@id='age']"), "Age text field");
+        private Input Salary = new Input(By.XPath("//input[@id='salary']"), "Salary text field");
+        private Input Department = new Input(By.XPath("//input[@id='department']"), "Department text field");
         private Button Submit = new Button(By.XPath("//button[@id='submit']"), "Submit button");
 
         public WebTabelsPage() : base(name, Def)

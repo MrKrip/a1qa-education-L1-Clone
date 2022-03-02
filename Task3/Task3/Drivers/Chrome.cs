@@ -17,6 +17,7 @@ namespace Task3.Drivers
                 var options = new ChromeOptions();
                 options.AddArgument("--start-maximized");
                 options.AddArgument("--incognito");
+                options.AddUserProfilePreference("download.default_directory",ConfigClass.DownloadPath);
                 Instance = new ChromeDriver(options);
             }
             return Instance;

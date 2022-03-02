@@ -107,7 +107,21 @@ namespace Task3
             Assert.IsTrue(SelectDate, "Select date is not matched with date now");
             Assert.IsTrue(DateAndTime, "Date and time not matched with date and time now");
             string value = datePicker.FindDate();
-            Assert.IsTrue(datePicker.IsFabruary29DateCorrect(value),"Select date is not correct");
+            Assert.IsTrue(datePicker.IsFabruary29DateCorrect(value), "Select date is not correct");
+        }
+
+        [Test]
+        [TestCase("sampleFile.jpeg")]
+        public void TestCase7(string filename)
+        {
+            LoggerUtil.MakeLog(TestCaseMark + "Test Case 7 start" + TestCaseMark);
+            HomePage Home = new HomePage();
+            UploadDownloadPage uploadDownload = new UploadDownloadPage();
+            Assert.IsTrue(Home.IsPageOpened(), "Home page not open");
+            Home.ClickElementsLink();
+            Assert.IsTrue(uploadDownload.ClickUplDownCategory().IsPageOpened(),"Upload and Download page not open");
+            Assert.IsTrue(uploadDownload.IsFileDownloaded(ConfigClass.DownloadPath+$@"\{filename}"),"File was not download");
+            Assert.IsTrue(uploadDownload.UploadFile(ConfigClass.DownloadPath + $@"\{filename}").IsfileUploaded(filename),"File was not upload");
         }
     }
 }

@@ -45,5 +45,10 @@ namespace Task3.Util
         {
             new WebDriverWait(BrowserFactory.GetInstance(), TimeSpan.FromSeconds(Time)).Until(wd => wd.WindowHandles.Count == count);
         }
+
+        public static void WaitFileExist(string path)
+        {
+            new WebDriverWait(BrowserFactory.GetInstance(), TimeSpan.FromSeconds(Time * 12)).Until<bool>(x=>File.Exists(path));
+        }
     }
 }
